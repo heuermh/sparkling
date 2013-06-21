@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package spark.webserver;
+package sparkling.webserver;
 
 import java.io.IOException;
 import java.util.List;
@@ -28,15 +28,15 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import spark.Access;
-import spark.HaltException;
-import spark.Request;
-import spark.RequestResponseFactory;
-import spark.Response;
-import spark.Route;
-import spark.route.HttpMethod;
-import spark.route.RouteMatch;
-import spark.route.RouteMatcher;
+import sparkling.Access;
+import sparkling.HaltException;
+import sparkling.Request;
+import sparkling.RequestResponseFactory;
+import sparkling.Response;
+import sparkling.Route;
+import sparkling.route.HttpMethod;
+import sparkling.route.RouteMatch;
+import sparkling.route.RouteMatcher;
 
 /**
  * Filter for matching of filters and routes.
@@ -56,8 +56,8 @@ public class MatcherFilter implements Filter {
      * Constructor
      * 
      * @param routeMatcher The route matcher
-     * @param isServletContext If true, chain.doFilter will be invoked if request is not consumed by Spark.
-     * @param hasOtherHandlers If true, do nothing if request is not consumed by Spark in order to let others handlers process the request.
+     * @param isServletContext If true, chain.doFilter will be invoked if request is not consumed by Sparkling.
+     * @param hasOtherHandlers If true, do nothing if request is not consumed by Sparkling in order to let others handlers process the request.
      */
     public MatcherFilter(RouteMatcher routeMatcher, boolean isServletContext, boolean hasOtherHandlers) {
         this.routeMatcher = routeMatcher;
@@ -90,11 +90,11 @@ public class MatcherFilter implements Filter {
             
             for (RouteMatch filterMatch : matchSet) {
                 Object filterTarget = filterMatch.getTarget();
-                if (filterTarget instanceof spark.Filter) {
+                if (filterTarget instanceof sparkling.Filter) {
                     Request request = RequestResponseFactory.create(filterMatch, httpRequest);
                     Response response = RequestResponseFactory.create(httpResponse);
 
-                    spark.Filter filter = (spark.Filter) filterTarget;
+                    sparkling.Filter filter = (sparkling.Filter) filterTarget;
 
                     req.setDelegate(request);
                     res.setDelegate(response);
@@ -154,14 +154,14 @@ public class MatcherFilter implements Filter {
             
             for (RouteMatch filterMatch : matchSet) {
                 Object filterTarget = filterMatch.getTarget();
-                if (filterTarget instanceof spark.Filter) {
+                if (filterTarget instanceof sparkling.Filter) {
                     Request request = RequestResponseFactory.create(filterMatch, httpRequest);
                     Response response = RequestResponseFactory.create(httpResponse);
                     
                     req.setDelegate(request);
                     res.setDelegate(response);
                     
-                    spark.Filter filter = (spark.Filter) filterTarget;
+                    sparkling.Filter filter = (sparkling.Filter) filterTarget;
                     filter.handle(req, res);
 
                     String bodyAfterFilter = Access.getBody(response);
@@ -208,6 +208,6 @@ public class MatcherFilter implements Filter {
         // TODO Auto-generated method stub
     }
 
-    private static final String NOT_FOUND = "<html><body><h2>404 Not found</h2>The requested route has not been mapped in Spark</body></html>";
+    private static final String NOT_FOUND = "<html><body><h2>404 Not found</h2>The requested route has not been mapped in Sparkling</body></html>";
     private static final String INTERNAL_ERROR = "<html><body><h2>500 Internal Error</h2></body></html>";
 }

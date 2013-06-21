@@ -5,16 +5,16 @@
 <web-app>
     <display-name>Archetype Created Web Application</display-name>
     <filter>
-        <filter-name>SparkFilter</filter-name>
-        <filter-class>spark.servlet.SparkFilter</filter-class>
+        <filter-name>SparklingFilter</filter-name>
+        <filter-class>sparkling.servlet.SparklingFilter</filter-class>
         <init-param>
             <param-name>applicationClass</param-name>
-            <param-value>spark.servlet.MyApp</param-value>
+            <param-value>sparkling.servlet.MyApp</param-value>
         </init-param>
     </filter>
 
     <filter-mapping>
-        <filter-name>SparkFilter</filter-name>
+        <filter-name>SparklingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 </web-app>

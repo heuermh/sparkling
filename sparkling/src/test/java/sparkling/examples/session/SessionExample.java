@@ -1,10 +1,10 @@
-package spark.examples.session;
+package sparkling.examples.session;
 
-import static spark.Spark.*;
+import static sparkling.Sparkling.*;
 
-import spark.Request;
-import spark.Response;
-import spark.Route;
+import sparkling.Request;
+import sparkling.Response;
+import sparkling.Route;
 
 public class SessionExample {
     private static final String SESSION_NAME = "username";

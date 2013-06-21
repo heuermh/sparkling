@@ -1,4 +1,4 @@
-package spark.util;
+package sparkling.util;
 
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
@@ -23,13 +23,13 @@ import java.security.KeyStore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SparkTestUtil {
+public class SparklingTestUtil {
 
     private int port;
 
     private HttpClient httpClient;
 
-    public SparkTestUtil(int port) {
+    public SparklingTestUtil(int port) {
         this.port = port;
         Scheme http = new Scheme("http", port, PlainSocketFactory.getSocketFactory());
         Scheme https = new Scheme("https", port, new org.apache.http.conn.ssl.SSLSocketFactory(getSslFactory(), null));

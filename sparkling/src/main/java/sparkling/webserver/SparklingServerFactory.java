@@ -14,24 +14,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package spark.webserver;
+package sparkling.webserver;
 
-import spark.route.RouteMatcherFactory;
+import sparkling.route.RouteMatcherFactory;
 
 /**
  * 
  *
  * @author Per Wendel
  */
-public final class SparkServerFactory {
+public final class SparklingServerFactory {
 
-    private SparkServerFactory() {}
+    private SparklingServerFactory() {}
     
-    public static SparkServer create(boolean hasMultipleHandler) {
+    public static SparklingServer create(boolean hasMultipleHandler) {
         MatcherFilter matcherFilter = new MatcherFilter(RouteMatcherFactory.get(), false, hasMultipleHandler);
         matcherFilter.init(null);
         JettyHandler handler = new JettyHandler(matcherFilter);
-        return new SparkServerImpl(handler);
+        return new SparklingServerImpl(handler);
     }
     
 }

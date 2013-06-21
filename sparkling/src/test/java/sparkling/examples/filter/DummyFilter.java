@@ -14,13 +14,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package spark.examples.filter;
+package sparkling.examples.filter;
 
-import static spark.Spark.after;
-import static spark.Spark.before;
-import spark.Filter;
-import spark.Request;
-import spark.Response;
+import static sparkling.Sparkling.after;
+import static sparkling.Sparkling.before;
+import sparkling.Filter;
+import sparkling.Request;
+import sparkling.Response;
 
 
 public class DummyFilter {

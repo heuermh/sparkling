@@ -1,4 +1,4 @@
-package spark.servlet;
+package sparkling.servlet;
 
 import java.util.Enumeration;
 
@@ -29,7 +29,7 @@ public class FilterConfigWrapper implements FilterConfig {
      */
     public String getInitParameter(String name) {
         if (name.equals("applicationClass")) {
-            return "spark.servlet.MyApp";
+            return "sparkling.servlet.MyApp";
         }
         return delegate.getInitParameter(name);
     }

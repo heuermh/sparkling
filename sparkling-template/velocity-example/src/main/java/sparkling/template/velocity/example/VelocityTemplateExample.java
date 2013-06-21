@@ -14,14 +14,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package spark.template.velocity.example;
+package sparkling.template.velocity.example;
 
-import static spark.Spark.get;
+import static sparkling.Sparkling.get;
 
-import spark.Request;
-import spark.Response;
+import sparkling.Request;
+import sparkling.Response;
 
-import spark.template.velocity.VelocityTemplateRoute;
+import sparkling.template.velocity.VelocityTemplateRoute;
 
 /**
  * VelocityTemplateRoute example.

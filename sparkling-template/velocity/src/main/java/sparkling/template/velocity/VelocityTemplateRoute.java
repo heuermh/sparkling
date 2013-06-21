@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package spark.template.velocity;
+package sparkling.template.velocity;
 
 import java.io.StringWriter;
 
@@ -25,7 +25,7 @@ import org.apache.velocity.VelocityContext;
 
 import org.apache.velocity.app.VelocityEngine;
 
-import spark.template.TemplateRoute;
+import sparkling.template.TemplateRoute;
 
 /**
  * Template route based on Apache Velocity.
@@ -33,7 +33,7 @@ import spark.template.TemplateRoute;
  * Example:
  * <pre>
  * {@code
- * Spark.get(new VelocityTemplateRoute("/hello/:name") {
+ * Sparkling.get(new VelocityTemplateRoute("/hello/:name") {
  *    public Object handle(Request request, Response response) {
  *       Person person = Person.find(request.params("name"));
  *       return template("hello.wm").render("person", person);

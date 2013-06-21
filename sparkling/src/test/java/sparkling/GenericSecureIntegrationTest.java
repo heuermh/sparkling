@@ -1,33 +1,33 @@
-package spark;
+package sparkling;
 
 import junit.framework.Assert;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import spark.util.SparkTestUtil;
-import spark.util.SparkTestUtil.UrlResponse;
+import sparkling.util.SparklingTestUtil;
+import sparkling.util.SparklingTestUtil.UrlResponse;
 
-import static spark.Spark.*;
+import static sparkling.Sparkling.*;
 
 public class GenericSecureIntegrationTest {
 
-    static SparkTestUtil testUtil;
+    static SparklingTestUtil testUtil;
 
     @AfterClass
     public static void tearDown() {
-        Spark.clearRoutes();
-        Spark.stop();
+        Sparkling.clearRoutes();
+        Sparkling.stop();
     }
 
     @BeforeClass
     public static void setup() {
-        testUtil = new SparkTestUtil(4567);
+        testUtil = new SparklingTestUtil(4567);
 
-        // note that the keystore stuff is retrieved from SparkTestUtil which
+        // note that the keystore stuff is retrieved from SparklingTestUtil which
         // respects JVM params for keystore, password
         // but offers a default included store if not.
-        Spark.setSecure(SparkTestUtil.getKeyStoreLocation(),
-                SparkTestUtil.getKeystorePassword(), null, null);
+        Sparkling.setSecure(SparklingTestUtil.getKeyStoreLocation(),
+                SparklingTestUtil.getKeystorePassword(), null, null);
 
         before(new Filter("/protected/*") {
 
@@ -103,7 +103,7 @@ public class GenericSecureIntegrationTest {
     @Test
     public void testGetHi() {
         try {
-            SparkTestUtil.UrlResponse response = testUtil.doMethodSecure("GET",
+            SparklingTestUtil.UrlResponse response = testUtil.doMethodSecure("GET",
                     "/hi", null);
             Assert.assertEquals(200, response.status);
             Assert.assertEquals("Hello World!", response.body);

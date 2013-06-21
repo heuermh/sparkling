@@ -1,16 +1,16 @@
-package spark.servlet;
+package sparkling.servlet;
 
-import static spark.Spark.after;
-import static spark.Spark.before;
-import static spark.Spark.get;
-import static spark.Spark.post;
-import spark.Filter;
-import spark.Request;
-import spark.Response;
-import spark.Route;
-import spark.servlet.SparkApplication;
+import static sparkling.Sparkling.after;
+import static sparkling.Sparkling.before;
+import static sparkling.Sparkling.get;
+import static sparkling.Sparkling.post;
+import sparkling.Filter;
+import sparkling.Request;
+import sparkling.Response;
+import sparkling.Route;
+import sparkling.servlet.SparklingApplication;
 
-public class MyApp implements SparkApplication {
+public class MyApp implements SparklingApplication {
 
     @Override
     public void init() {

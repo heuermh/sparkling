@@ -14,14 +14,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package spark.examples.filter;
+package sparkling.examples.filter;
 
-import static spark.Spark.after;
-import static spark.Spark.get;
-import spark.Filter;
-import spark.Request;
-import spark.Response;
-import spark.Route;
+import static sparkling.Sparkling.after;
+import static sparkling.Sparkling.get;
+import sparkling.Filter;
+import sparkling.Request;
+import sparkling.Response;
+import sparkling.Route;
 
 /**
  * Example showing the use of attributes

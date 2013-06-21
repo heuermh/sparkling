@@ -14,16 +14,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package spark;
+package sparkling;
 
-import spark.route.HttpMethod;
-import spark.route.RouteMatcher;
-import spark.route.RouteMatcherFactory;
-import spark.webserver.SparkServer;
-import spark.webserver.SparkServerFactory;
+import sparkling.route.HttpMethod;
+import sparkling.route.RouteMatcher;
+import sparkling.route.RouteMatcherFactory;
+import sparkling.webserver.SparklingServer;
+import sparkling.webserver.SparklingServerFactory;
 
 /**
- * The main building block of a Spark application is a set of routes. A route is
+ * The main building block of a Sparkling application is a set of routes. A route is
  * made up of three simple pieces:
  * <p/>
  * <ul>
@@ -36,7 +36,7 @@ import spark.webserver.SparkServerFactory;
  * <p/>
  * <pre>
  * {@code
- * Spark.get(new Route("/hello") {
+ * Sparkling.get(new Route("/hello") {
  *    public Object handle(Request request, Response response) {
  *       return "Hello World!";
  *    }
@@ -49,16 +49,16 @@ import spark.webserver.SparkServerFactory;
  *
  * @author Per Wendel
  */
-public final class Spark {
+public final class Sparkling {
 
-    private static final int SPARK_DEFAULT_PORT = 4567;
+    private static final int SPARKLING_DEFAULT_PORT = 4567;
 
     private static boolean initialized = false;
 
-    private static SparkServer server;
+    private static SparklingServer server;
     private static RouteMatcher routeMatcher;
     private static String ipAddress = "0.0.0.0";
-    private static int port = SPARK_DEFAULT_PORT;
+    private static int port = SPARKLING_DEFAULT_PORT;
 
     private static String keystoreFile;
     private static String keystorePassword;
@@ -69,11 +69,11 @@ public final class Spark {
     private static String externalStaticFileFolder = null;
 
     // Hide constructor
-    private Spark() {
+    private Sparkling() {
     }
 
     /**
-     * Set the IP address that Spark should listen on. If not called the default
+     * Set the IP address that Sparkling should listen on. If not called the default
      * address is '0.0.0.0'. This has to be called before any route mapping is
      * done.
      *
@@ -83,11 +83,11 @@ public final class Spark {
         if (initialized) {
             throwBeforeRouteMappingException();
         }
-        Spark.ipAddress = ipAddress;
+        Sparkling.ipAddress = ipAddress;
     }
 
     /**
-     * Set the port that Spark should listen on. If not called the default port
+     * Set the port that Sparkling should listen on. If not called the default port
      * is 4567. This has to be called before any route mapping is done.
      *
      * @param port The port number
@@ -96,7 +96,7 @@ public final class Spark {
         if (initialized) {
             throwBeforeRouteMappingException();
         }
-        Spark.port = port;
+        Sparkling.port = port;
     }
 
     /**
@@ -127,10 +127,10 @@ public final class Spark {
                     "Must provide a keystore file to run secured");
         }
 
-        Spark.keystoreFile = keystoreFile;
-        Spark.keystorePassword = keystorePassword;
-        Spark.truststoreFile = truststoreFile;
-        Spark.truststorePassword = truststorePassword;
+        Sparkling.keystoreFile = keystoreFile;
+        Sparkling.keystorePassword = keystorePassword;
+        Sparkling.truststoreFile = truststoreFile;
+        Sparkling.truststorePassword = truststorePassword;
     }
 
     /**
@@ -300,7 +300,7 @@ public final class Spark {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    server = SparkServerFactory.create(hasMultipleHandlers());
+                    server = SparklingServerFactory.create(hasMultipleHandlers());
                     server.ignite(
                             ipAddress,
                             port,
@@ -350,7 +350,7 @@ public final class Spark {
      * TODO: Add possibility to access HttpServletContext in method impl, DONE 
      * TODO: Redirect func in web context, DONE 
      * TODO: Refactor, extract interfaces, DONE 
-     * TODO: Figure out a nice name, DONE - SPARK 
+     * TODO: Figure out a nice name, DONE - SPARKLING 
      * TODO: Add /uri/{param} possibility, DONE 
      * TODO: Tweak log4j config, DONE 
      * TODO: Query string in web context, DONE 

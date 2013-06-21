@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package spark.utils;
+package sparkling.utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,11 +24,11 @@ import java.util.List;
  *
  * @author Per Wendel
  */
-public final class SparkUtils {
+public final class SparklingUtils {
 
     public static final String ALL_PATHS = "+/*paths";
     
-    private SparkUtils() {}
+    private SparklingUtils() {}
     
     public static List<String> convertRouteToList(String route) {
         String[] pathArray = route.split("/");

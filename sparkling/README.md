@@ -1,15 +1,13 @@
-Spark - a Sinatra inspired web framework
+Sparkling, a fork of Spark, a Sinatra inspired web framework
 ==============================================
-
-Examples can also be viewed on: http://code.google.com/p/spark-java/
 
 Getting started
 ---------------
 
 ```java
-import static spark.Spark.*;
+import static sparkling.Sparkling.*;
 
-import spark.*;
+import sparkling.*;
 
 public class HelloWorld {
 
@@ -45,11 +43,11 @@ Examples
 Simple example showing some basic functionality
 
 ```java
-import static spark.Spark.*;
+import static sparkling.Sparkling.*;
 
-import spark.Request;
-import spark.Response;
-import spark.Route;
+import sparkling.Request;
+import sparkling.Response;
+import sparkling.Route;
 
 /**
  * A simple example just showing some basic functionality
@@ -58,7 +56,7 @@ public class SimpleExample {
     
     public static void main(String[] args) {
         
-        //  setPort(5678); <- Uncomment this if you wan't spark to listen on a port different than 4567.
+        //  setPort(5678); <- Uncomment this if you wan't sparkling to listen on a port different than 4567.
         
         get(new Route("/hello") {
             @Override
@@ -129,15 +127,15 @@ public class SimpleExample {
 A simple RESTful example showing howto create, get, update and delete book resources
 
 ```java
-import static spark.Spark.*;
+import static sparkling.Sparkling.*;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-import spark.Request;
-import spark.Response;
-import spark.Route;
+import sparkling.Request;
+import sparkling.Response;
+import sparkling.Route;
 
 /**
  * A simple RESTful example showing howto create, get, update and delete book resources.
@@ -244,15 +242,15 @@ public class Books {
 Example showing a very simple (and stupid) authentication filter that is executed before all other resources
 
 ```java
-import static spark.Spark.*;
+import static sparkling.Sparkling.*;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import spark.Filter;
-import spark.Request;
-import spark.Response;
-import spark.Route;
+import sparkling.Filter;
+import sparkling.Request;
+import sparkling.Response;
+import sparkling.Route;
 
 /**
  * Example showing a very simple (and stupid) autentication filter that is
@@ -308,7 +306,7 @@ public class FilterExample {
       after(new Filter("/hello") {
           @Override
           public void handle(Request request, Response response) {
-             response.header("spark", "added by after-filter");
+             response.header("sparkling", "added by after-filter");
           }
        });
       
@@ -321,12 +319,12 @@ public class FilterExample {
 Example showing how to use attributes
 
 ```java
-import static spark.Spark.after;
-import static spark.Spark.get;
-import spark.Filter;
-import spark.Request;
-import spark.Response;
-import spark.Route;
+import static sparkling.Sparkling.after;
+import static sparkling.Sparkling.get;
+import sparkling.Filter;
+import sparkling.Request;
+import sparkling.Response;
+import sparkling.Route;
 
 /**
  * Example showing the use of attributes
@@ -373,8 +371,8 @@ public class FilterExampleAttributes {
 Example showing how to serve static resources
 
 ```java
-import static spark.Spark.*;
-import spark.*;
+import static sparkling.Sparkling.*;
+import sparkling.*;
 
 public class StaticResources {
 

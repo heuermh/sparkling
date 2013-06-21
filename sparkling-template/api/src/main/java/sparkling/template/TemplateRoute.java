@@ -14,13 +14,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package spark.template;
+package sparkling.template;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import spark.Route;
+import sparkling.Route;
 
 /**
  * Abstract template route.
@@ -28,7 +28,7 @@ import spark.Route;
  * Example:
  * <pre>
  * {@code
- * Spark.get(new TemplateRoute("/hello/:name") {
+ * Sparkling.get(new TemplateRoute("/hello/:name") {
  *    public Object handle(Request request, Response response) {
  *       Person person = Person.find(request.params("name"));
  *       return template("hello").render("person", person);

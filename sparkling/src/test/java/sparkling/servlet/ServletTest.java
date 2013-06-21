@@ -1,4 +1,4 @@
-package spark.servlet;
+package sparkling.servlet;
 
 import junit.framework.Assert;
 import org.eclipse.jetty.server.Connector;
@@ -8,11 +8,11 @@ import org.eclipse.jetty.webapp.WebAppContext;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import spark.TAccess;
-import spark.util.SparkTestUtil;
-import spark.util.SparkTestUtil.UrlResponse;
+import sparkling.TAccess;
+import sparkling.util.SparklingTestUtil;
+import sparkling.util.SparklingTestUtil.UrlResponse;
 
-import static spark.util.SparkTestUtil.sleep;
+import static sparkling.util.SparklingTestUtil.sleep;
 
 public class ServletTest {
 
@@ -20,7 +20,7 @@ public class ServletTest {
     private static final int PORT = 9393;
     static final Server server = new Server();
 
-    static SparkTestUtil testUtil;
+    static SparklingTestUtil testUtil;
 
     @AfterClass
     public static void tearDown() {
@@ -30,7 +30,7 @@ public class ServletTest {
 
     @BeforeClass
     public static void setup() {
-        testUtil = new SparkTestUtil(PORT);
+        testUtil = new SparklingTestUtil(PORT);
 
         final Server server = new Server();
         ServerConnector connector = new ServerConnector(server);
@@ -52,7 +52,7 @@ public class ServletTest {
             @Override
             public void run() {
                 try {
-                    System.out.println(">>> STARTING EMBEDDED JETTY SERVER for jUnit testing of SparkFilter");
+                    System.out.println(">>> STARTING EMBEDDED JETTY SERVER for jUnit testing of SparklingFilter");
                     server.start();
                     System.in.read();
                     System.out.println(">>> STOPPING EMBEDDED JETTY SERVER");

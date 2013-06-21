@@ -19,24 +19,24 @@ limitations under the License.
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>com.sparkjava</groupId>
-    <artifactId>spark-template-multimodule</artifactId>
-    <version>0.9.9.7-SNAPSHOT</version>
+    <groupId>com.github.heuermh.sparkling</groupId>
+    <artifactId>sparkling-template-multimodule</artifactId>
+    <version>1.0-SNAPSHOT</version>
   </parent>
-  <artifactId>spark-template</artifactId>
+  <artifactId>sparkling-template</artifactId>
   <packaging>jar</packaging>
 
-  <name>spark-template</name>
-  <description>Template routes for Spark web framework</description>
+  <name>sparkling-template</name>
+  <description>Template routes for Sparkling web framework</description>
 
   <properties>
-    <componentId>spark-template</componentId>
+    <componentId>sparkling-template</componentId>
   </properties>
 
   <dependencies>
     <dependency>
-      <groupId>com.sparkjava</groupId>
-      <artifactId>spark-core</artifactId>
+      <groupId>com.github.heuermh.sparkling</groupId>
+      <artifactId>sparkling</artifactId>
       <scope>compile</scope>
     </dependency>
     <dependency>

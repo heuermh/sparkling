@@ -1,4 +1,4 @@
-//package spark;
+//package sparkling;
 //
 //import java.io.FileNotFoundException;
 //import java.net.HttpURLConnection;
@@ -12,8 +12,8 @@
 //import org.junit.BeforeClass;
 //import org.junit.Test;
 //
-//import spark.examples.books.Books;
-//import spark.utils.IOUtils;
+//import sparkling.examples.books.Books;
+//import sparkling.utils.IOUtils;
 //
 //public class BooksIntegrationTest {
 //
@@ -21,17 +21,17 @@
 //
 //   private static String AUTHOR = "FOO";
 //   private static String TITLE = "BAR";
-//   private static String NEW_TITLE = "SPARK";
+//   private static String NEW_TITLE = "SPARKLING";
 //
 //   @AfterClass
 //   public static void tearDown() {
-//       Spark.clearRoutes();
-//       Spark.stop();
+//       Sparkling.clearRoutes();
+//       Sparkling.stop();
 //   }
 //   
 //   @BeforeClass
 //   public static void setup() {
-//      Spark.before(new Filter(){
+//      Sparkling.before(new Filter(){
 //         @Override
 //         public void handle(Request request, Response response) {
 //            response.header("FOZ", "BAZ");
@@ -40,7 +40,7 @@
 //      
 //      Books.main(null);
 //      
-//      Spark.after(new Filter(){
+//      Sparkling.after(new Filter(){
 //         @Override
 //         public void handle(Request request, Response response) {
 //            response.header("FOO", "BAR");

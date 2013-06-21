@@ -14,12 +14,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package spark.route;
+package sparkling.route;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import spark.utils.SparkUtils;
+import sparkling.utils.SparklingUtils;
 
 /**
  * Simple route matcher that is supposed to work exactly as Sinatra's
@@ -41,7 +41,7 @@ public class SimpleRouteMatcher implements RouteMatcher {
         private boolean matches(HttpMethod httpMethod, String path) {
             if ( (httpMethod == HttpMethod.before || httpMethod == HttpMethod.after)
                             && (this.httpMethod == httpMethod)
-                            && this.path.equals(SparkUtils.ALL_PATHS)) {
+                            && this.path.equals(SparklingUtils.ALL_PATHS)) {
                 // Is filter and matches all
                 return true;
             }
@@ -64,8 +64,8 @@ public class SimpleRouteMatcher implements RouteMatcher {
             }
 
             // check params
-            List<String> thisPathList = SparkUtils.convertRouteToList(this.path);
-            List<String> pathList = SparkUtils.convertRouteToList(path);
+            List<String> thisPathList = SparklingUtils.convertRouteToList(this.path);
+            List<String> pathList = SparklingUtils.convertRouteToList(path);
 
             
             int thisPathSize = thisPathList.size();

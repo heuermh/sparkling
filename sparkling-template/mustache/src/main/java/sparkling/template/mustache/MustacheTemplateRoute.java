@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package spark.template.mustache;
+package sparkling.template.mustache;
 
 import java.io.StringWriter;
 
@@ -24,7 +24,7 @@ import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;
 
-import spark.template.TemplateRoute;
+import sparkling.template.TemplateRoute;
 
 /**
  * Template route based on Mustache.java.
@@ -32,7 +32,7 @@ import spark.template.TemplateRoute;
  * Example:
  * <pre>
  * {@code
- * Spark.get(new MustacheTemplateRoute("/hello/:name") {
+ * Sparkling.get(new MustacheTemplateRoute("/hello/:name") {
  *    public Object handle(Request request, Response response) {
  *       Person person = Person.find(request.params("name"));
  *       return template("hello.mustache").render("person", person);

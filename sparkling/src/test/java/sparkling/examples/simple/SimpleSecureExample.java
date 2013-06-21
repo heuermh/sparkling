@@ -14,28 +14,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package spark.examples.simple;
+package sparkling.examples.simple;
 
-import spark.Request;
-import spark.Response;
-import spark.Route;
+import sparkling.Request;
+import sparkling.Response;
+import sparkling.Route;
 
-import static spark.Spark.get;
-import static spark.Spark.post;
-import static spark.Spark.setSecure;
+import static sparkling.Sparkling.get;
+import static sparkling.Sparkling.post;
+import static sparkling.Sparkling.setSecure;
 
 /**
  * A simple example just showing some basic functionality You'll need to provide
  * a JKS keystore as arg 0 and its password as arg 1.
  * 
  * @author Peter Nicholls, based on (practically identical to in fact)
- *         {@link spark.examples.simple.SimpleExample} by Per Wendel
+ *         {@link sparkling.examples.simple.SimpleExample} by Per Wendel
  */
 public class SimpleSecureExample {
 
     public static void main(String[] args) {
 
-        // setPort(5678); <- Uncomment this if you want spark to listen on a
+        // setPort(5678); <- Uncomment this if you want sparkling to listen on a
         // port different than 4567.
 
         setSecure(args[0], args[1], null, null);

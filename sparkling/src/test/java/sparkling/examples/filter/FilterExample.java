@@ -14,17 +14,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package spark.examples.filter;
+package sparkling.examples.filter;
 
-import static spark.Spark.*;
+import static sparkling.Sparkling.*;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import spark.Filter;
-import spark.Request;
-import spark.Response;
-import spark.Route;
+import sparkling.Filter;
+import sparkling.Request;
+import sparkling.Response;
+import sparkling.Route;
 
 /**
  * Example showing a very simple (and stupid) autentication filter that is
@@ -82,7 +82,7 @@ public class FilterExample {
       after(new Filter("/hello") {
           @Override
           public void handle(Request request, Response response) {
-             response.header("spark", "added by after-filter");
+             response.header("sparkling", "added by after-filter");
           }
        });
       

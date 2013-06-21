@@ -1,4 +1,4 @@
-package spark;
+package sparkling;
 
 import static org.junit.Assert.*;
 
@@ -28,8 +28,8 @@ import javax.servlet.http.Part;
 
 import org.junit.Test;
 
-import spark.route.HttpMethod;
-import spark.route.RouteMatch;
+import sparkling.route.HttpMethod;
+import sparkling.route.RouteMatch;
 
 public class RequestTest {
     

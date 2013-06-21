@@ -1,8 +1,8 @@
-package spark;
+package sparkling;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
-import static spark.Spark.post;
+import static sparkling.Sparkling.post;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -72,8 +72,8 @@ public class CookiesIntegrationTest {
     
     @AfterClass
     public static void stopServer() {
-        Spark.clearRoutes();
-        Spark.stop();
+        Sparkling.clearRoutes();
+        Sparkling.stop();
     }
     
     @Test

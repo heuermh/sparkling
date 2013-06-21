@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package spark.webserver;
+package sparkling.webserver;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,19 +32,19 @@ import org.eclipse.jetty.util.resource.Resource;
 import org.eclipse.jetty.util.ssl.SslContextFactory;
 
 /**
- * Spark server implementation
+ * Sparkling server implementation
  * 
  * @author Per Wendel
  */
-class SparkServerImpl implements SparkServer {
+class SparklingServerImpl implements SparklingServer {
 
-    private static final String NAME = "Spark";
+    private static final String NAME = "Sparkling";
     private Handler handler;
     private Server server;
 
-    public SparkServerImpl(Handler handler) {
+    public SparklingServerImpl(Handler handler) {
         this.handler = handler;
-        System.setProperty("org.mortbay.log.class", "spark.JettyLogger");
+        System.setProperty("org.mortbay.log.class", "sparkling.JettyLogger");
     }
 
     @Override

@@ -1,4 +1,4 @@
-package spark;
+package sparkling;
 
 import java.util.HashMap;
 import java.util.Map;

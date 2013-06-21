@@ -1,27 +1,27 @@
-package spark;
+package sparkling;
 
 import junit.framework.Assert;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import spark.util.SparkTestUtil;
-import spark.util.SparkTestUtil.UrlResponse;
+import sparkling.util.SparklingTestUtil;
+import sparkling.util.SparklingTestUtil.UrlResponse;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import static spark.Spark.*;
+import static sparkling.Sparkling.*;
 
 public class GenericIntegrationTest {
 
-    static SparkTestUtil testUtil;
+    static SparklingTestUtil testUtil;
     static File tmpExternalFile;
 
     @AfterClass
     public static void tearDown() {
-        Spark.clearRoutes();
-        Spark.stop();
+        Sparkling.clearRoutes();
+        Sparkling.stop();
         if (tmpExternalFile != null) {
             tmpExternalFile.delete();
         }
@@ -29,7 +29,7 @@ public class GenericIntegrationTest {
 
     @BeforeClass
     public static void setup() throws IOException {
-        testUtil = new SparkTestUtil(4567);
+        testUtil = new SparklingTestUtil(4567);
 
         tmpExternalFile = new File(System.getProperty("java.io.tmpdir"), "externalFile.html");
 
@@ -197,7 +197,7 @@ public class GenericIntegrationTest {
 
     @Test
     public void testEchoParamWithUpperCaseInValue() {
-        final String camelCased = "ThisIsAValueAndSparkShouldRetainItsUpperCasedCharacters";
+        final String camelCased = "ThisIsAValueAndSparklingShouldRetainItsUpperCasedCharacters";
         try {
             UrlResponse response = testUtil.doMethod("GET", "/param/" + camelCased, null);
             Assert.assertEquals(200, response.status);

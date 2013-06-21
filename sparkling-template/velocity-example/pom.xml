@@ -19,18 +19,18 @@ limitations under the License.
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>com.sparkjava</groupId>
-    <artifactId>spark-template-multimodule</artifactId>
-    <version>0.9.9.7-SNAPSHOT</version>
+    <groupId>com.github.heuermh.sparkling</groupId>
+    <artifactId>sparkling-template-multimodule</artifactId>
+    <version>1.0-SNAPSHOT</version>
   </parent>
-  <artifactId>spark-template-velocity-example</artifactId>
+  <artifactId>sparkling-template-velocity-example</artifactId>
   <packaging>jar</packaging>
 
-  <name>spark-template-velocity-example</name>
-  <description>Example for spark-template-velocity</description>
+  <name>sparkling-template-velocity-example</name>
+  <description>Example for sparkling-template-velocity</description>
 
   <properties>
-    <componentId>spark-template-velocity-example</componentId>
+    <componentId>sparkling-template-velocity-example</componentId>
   </properties>
 
   <build>
@@ -40,7 +40,7 @@ limitations under the License.
         <configuration>
           <archive>
             <manifest>
-              <mainClass>spark.template.velocity.example.VelocityTemplateExample</mainClass>
+              <mainClass>sparkling.template.velocity.example.VelocityTemplateExample</mainClass>
             </manifest>
           </archive>
           <descriptorRefs>
@@ -53,16 +53,16 @@ limitations under the License.
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>com.sparkjava</groupId>
-        <artifactId>spark-template-velocity</artifactId>
+        <groupId>com.github.heuermh.sparkling</groupId>
+        <artifactId>sparkling-template-velocity</artifactId>
         <version>${project.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
   <dependencies>
     <dependency>
-      <groupId>com.sparkjava</groupId>
-      <artifactId>spark-template-velocity</artifactId>
+      <groupId>com.github.heuermh.sparkling</groupId>
+      <artifactId>sparkling-template-velocity</artifactId>
       <scope>compile</scope>
     </dependency>
     <dependency>

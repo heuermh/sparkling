@@ -1,4 +1,4 @@
-package spark;
+package sparkling;
 
 import static org.junit.Assert.*;
 

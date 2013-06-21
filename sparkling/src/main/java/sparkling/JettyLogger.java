@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package spark;
+package sparkling;
 
 import org.eclipse.jetty.util.log.Logger;
 
@@ -63,7 +63,7 @@ public class JettyLogger implements Logger {
 
     @Override
     public String getName() {
-        return "Spark Jetty Logger";
+        return "Sparkling Jetty Logger";
     }
 
     @Override

@@ -1,11 +1,11 @@
-package spark.examples.hello;
+package sparkling.examples.hello;
 
-import spark.Request;
-import spark.Response;
-import spark.Route;
+import sparkling.Request;
+import sparkling.Response;
+import sparkling.Route;
 
-import static spark.Spark.get;
-import static spark.Spark.setSecure;
+import static sparkling.Sparkling.get;
+import static sparkling.Sparkling.setSecure;
 
 /**
  * You'll need to provide a JKS keystore as arg 0 and its password as arg 1.

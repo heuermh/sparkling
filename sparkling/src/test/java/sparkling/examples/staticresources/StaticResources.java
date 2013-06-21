@@ -14,14 +14,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package spark.examples.staticresources;
+package sparkling.examples.staticresources;
 
-import spark.Request;
-import spark.Response;
-import spark.Route;
+import sparkling.Request;
+import sparkling.Response;
+import sparkling.Route;
 
-import static spark.Spark.get;
-import static spark.Spark.staticFileLocation;
+import static sparkling.Sparkling.get;
+import static sparkling.Sparkling.staticFileLocation;
 
 /**
  * Example showing how serve static resources.

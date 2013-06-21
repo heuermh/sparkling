@@ -14,16 +14,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package spark.webserver;
+package sparkling.webserver;
 
 import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
-import spark.QueryParamsMap;
-import spark.Request;
-import spark.Session;
+import sparkling.QueryParamsMap;
+import sparkling.Request;
+import sparkling.Session;
 
 final class RequestWrapper extends Request {
 

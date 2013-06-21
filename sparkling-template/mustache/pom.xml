@@ -19,43 +19,43 @@ limitations under the License.
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>com.sparkjava</groupId>
-    <artifactId>spark-template-multimodule</artifactId>
-    <version>0.9.9.7-SNAPSHOT</version>
+    <groupId>com.github.heuermh.sparkling</groupId>
+    <artifactId>sparkling-template-multimodule</artifactId>
+    <version>1.0-SNAPSHOT</version>
   </parent>
-  <artifactId>spark-template-mustache</artifactId>
+  <artifactId>sparkling-template-mustache</artifactId>
   <packaging>jar</packaging>
 
-  <name>spark-template-velocity</name>
+  <name>sparkling-template-velocity</name>
   <description>Template routes based on Mustache.java</description>
 
   <properties>
-    <componentId>spark-template-mustache</componentId>
+    <componentId>sparkling-template-mustache</componentId>
   </properties>
 
   <dependencyManagement>
     <dependencies>
       <dependency>
+        <groupId>com.github.heuermh.sparkling</groupId>
+        <artifactId>sparkling-template</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
         <groupId>com.github.spullara.mustache.java</groupId>
         <artifactId>compiler</artifactId>
         <version>0.8.9</version>
-      </dependency>
-      <dependency>
-        <groupId>com.sparkjava</groupId>
-        <artifactId>spark-template</artifactId>
-        <version>${project.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
   <dependencies>
     <dependency>
-      <groupId>com.github.spullara.mustache.java</groupId>
-      <artifactId>compiler</artifactId>
+      <groupId>com.github.heuermh.sparkling</groupId>
+      <artifactId>sparkling-template</artifactId>
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>com.sparkjava</groupId>
-      <artifactId>spark-template</artifactId>
+      <groupId>com.github.spullara.mustache.java</groupId>
+      <artifactId>compiler</artifactId>
       <scope>compile</scope>
     </dependency>
     <dependency>

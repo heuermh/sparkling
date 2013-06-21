@@ -14,14 +14,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package spark.template.mustache.example;
+package sparkling.template.mustache.example;
 
-import static spark.Spark.get;
+import static sparkling.Sparkling.get;
 
-import spark.Request;
-import spark.Response;
+import sparkling.Request;
+import sparkling.Response;
 
-import spark.template.mustache.MustacheTemplateRoute;
+import sparkling.template.mustache.MustacheTemplateRoute;
 
 /**
  * MustacheTemplateRoute example.

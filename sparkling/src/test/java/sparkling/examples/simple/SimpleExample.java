@@ -14,13 +14,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package spark.examples.simple;
+package sparkling.examples.simple;
 
-import static spark.Spark.*;
+import static sparkling.Sparkling.*;
 
-import spark.Request;
-import spark.Response;
-import spark.Route;
+import sparkling.Request;
+import sparkling.Response;
+import sparkling.Route;
 
 /**
  * A simple example just showing some basic functionality
@@ -31,7 +31,7 @@ public class SimpleExample {
     
     public static void main(String[] args) {
         
-        //  setPort(5678); <- Uncomment this if you wan't spark to listen on a port different than 4567.
+        //  setPort(5678); <- Uncomment this if you wan't sparkling to listen on a port different than 4567.
         
         get(new Route("/hello") {
             @Override

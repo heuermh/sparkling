@@ -1,13 +1,13 @@
-package spark;
+package sparkling;
 
 public class TAccess {
 
     public static void clearRoutes() {
-        Spark.clearRoutes();
+        Sparkling.clearRoutes();
     }
     
     public static void stop() {
-    	Spark.stop();
+    	Sparkling.stop();
     }
     
 }

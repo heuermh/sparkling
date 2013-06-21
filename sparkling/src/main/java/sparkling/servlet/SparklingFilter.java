@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package spark.servlet;
+package sparkling.servlet;
 
 import java.io.IOException;
 
@@ -30,9 +30,9 @@ import javax.servlet.http.HttpServletRequestWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import spark.Access;
-import spark.route.RouteMatcherFactory;
-import spark.webserver.MatcherFilter;
+import sparkling.Access;
+import sparkling.route.RouteMatcherFactory;
+import sparkling.webserver.MatcherFilter;
 
 /**
  * Filter that can be configured to be used in a web.xml file.
@@ -41,11 +41,11 @@ import spark.webserver.MatcherFilter;
  *
  * @author Per Wendel
  */
-public class SparkFilter implements Filter {
+public class SparklingFilter implements Filter {
 
     public static final String APPLICATION_CLASS_PARAM = "applicationClass";
 
-    private static final Logger LOG = LoggerFactory.getLogger(SparkFilter.class);
+    private static final Logger LOG = LoggerFactory.getLogger(SparklingFilter.class);
     
     private String filterPath;
 
@@ -55,7 +55,7 @@ public class SparkFilter implements Filter {
     public void init(FilterConfig filterConfig) throws ServletException {
         Access.runFromServlet();
 
-        final SparkApplication application = getApplication(filterConfig);
+        final SparklingApplication application = getApplication(filterConfig);
         application.init();
 
         filterPath = FilterTools.getFilterPath(filterConfig);
@@ -63,19 +63,19 @@ public class SparkFilter implements Filter {
     }
 
     /**
-     * Returns an instance of {@link SparkApplication} which on which {@link SparkApplication#init() init()} will be called.
+     * Returns an instance of {@link SparklingApplication} which on which {@link SparklingApplication#init() init()} will be called.
      * Default implementation looks up the class name in the filterConfig using the key {@link #APPLICATION_CLASS_PARAM}.
      * Subclasses can override this method to use different techniques to obtain an instance (i.e. dependency injection).
      *
      * @param filterConfig the filter configuration for retrieving parameters passed to this filter.
-     * @return the spark application containing the configuration.
+     * @return the sparkling application containing the configuration.
      * @throws ServletException if anything went wrong.
      */
-    protected SparkApplication getApplication(FilterConfig filterConfig) throws ServletException {
+    protected SparklingApplication getApplication(FilterConfig filterConfig) throws ServletException {
         try {
             String applicationClassName = filterConfig.getInitParameter(APPLICATION_CLASS_PARAM);
             Class<?> applicationClass = Class.forName(applicationClassName);
-            return (SparkApplication) applicationClass.newInstance();
+            return (SparklingApplication) applicationClass.newInstance();
         } catch (Exception e) {
             throw new ServletException(e);
         }

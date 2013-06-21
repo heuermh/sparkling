@@ -14,17 +14,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package spark.servlet;
+package sparkling.servlet;
 
 /**
- * The application entry point when Spark is run in a servlet context.
+ * The application entry point when Sparkling is run in a servlet context.
  *
  * @author Per Wendel
  */
-public interface SparkApplication {
+public interface SparklingApplication {
     
     /**
-     * Invoked from the SparkFilter. Add routes here.
+     * Invoked from the SparklingFilter. Add routes here.
      */
     void init();
 }

@@ -14,17 +14,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package spark.examples.books;
+package sparkling.examples.books;
 
-import static spark.Spark.*;
+import static sparkling.Sparkling.*;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-import spark.Request;
-import spark.Response;
-import spark.Route;
+import sparkling.Request;
+import sparkling.Response;
+import sparkling.Route;
 
 /**
  * A simple RESTful example showing howto create, get, update and delete book resources.

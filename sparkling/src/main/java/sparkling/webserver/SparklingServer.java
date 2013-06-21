@@ -14,17 +14,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package spark.webserver;
+package sparkling.webserver;
 
 /**
  * 
  *
  * @author Per Wendel
  */
-public interface SparkServer {
+public interface SparklingServer {
     
     /**
-     * Ignites the spark server, listening on the specified port, running SSL secured with the specified keystore
+     * Ignites the sparkling server, listening on the specified port, running SSL secured with the specified keystore
      * and truststore.  If truststore is null, keystore is reused.
      *
      * @param host The address to listen on
@@ -47,7 +47,7 @@ public interface SparkServer {
             String externalFilesLocation);
     
     /**
-     * Stops the spark server
+     * Stops the sparkling server
      */
 	void stop();
 }

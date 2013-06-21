@@ -1,4 +1,4 @@
-package spark;
+package sparkling;
 
 import java.util.Enumeration;
 import java.util.Set;

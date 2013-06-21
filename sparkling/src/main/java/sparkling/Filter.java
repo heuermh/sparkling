@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-package spark;
+package sparkling;
 
-import spark.utils.SparkUtils;
+import sparkling.utils.SparklingUtils;
 
 
 /**
@@ -34,7 +34,7 @@ public abstract class Filter extends AbstractRoute {
      * Constructs a filter that matches on everything
      */
     protected Filter() {
-        this.path = SparkUtils.ALL_PATHS;
+        this.path = SparklingUtils.ALL_PATHS;
     }
     
     /**

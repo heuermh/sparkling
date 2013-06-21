@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package spark;
+package sparkling;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,10 +30,10 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import spark.route.HttpMethod;
-import spark.route.RouteMatch;
-import spark.utils.IOUtils;
-import spark.utils.SparkUtils;
+import sparkling.route.HttpMethod;
+import sparkling.route.RouteMatch;
+import sparkling.utils.IOUtils;
+import sparkling.utils.SparklingUtils;
 
 /**
  * Provides information about the HTTP request
@@ -94,8 +94,8 @@ public class Request {
         this.httpMethod = match.getHttpMethod();
         this.servletRequest = request;
         
-        List<String> requestList = SparkUtils.convertRouteToList(match.getRequestURI());
-        List<String> matchedList = SparkUtils.convertRouteToList(match.getMatchUri());
+        List<String> requestList = SparklingUtils.convertRouteToList(match.getRequestURI());
+        List<String> matchedList = SparklingUtils.convertRouteToList(match.getMatchUri());
         
         params = getParams(requestList, matchedList);
         splat = getSplat(requestList, matchedList);
@@ -378,7 +378,7 @@ public class Request {
         
         for (int i = 0; (i < request.size()) && (i < matched.size()); i++) {
             String matchedPart = matched.get(i);
-            if (SparkUtils.isParam(matchedPart)) {
+            if (SparklingUtils.isParam(matchedPart)) {
                 LOG.debug("matchedPart: "
                                 + matchedPart
                                 + " = "
@@ -402,7 +402,7 @@ public class Request {
         for (int i = 0; (i < nbrOfRequestParts) && (i < nbrOfMatchedParts); i++) {
             String matchedPart = matched.get(i);
             
-            if (SparkUtils.isSplat(matchedPart)) {
+            if (SparklingUtils.isSplat(matchedPart)) {
                 
                 StringBuilder splatParam = new StringBuilder(request.get(i));
                 if (!sameLength && (i == (nbrOfMatchedParts -1))) {
