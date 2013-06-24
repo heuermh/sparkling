@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-Copyright 2011- Per Wendel, Michael Heuer
+Copyright 2011-2013 Per Wendel, Michael Heuer
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -27,11 +27,7 @@ limitations under the License.
   <packaging>jar</packaging>
 
   <name>sparkling-template-velocity</name>
-  <description>Template routes based on Apache Velocity</description>
-
-  <properties>
-    <componentId>sparkling-template-velocity</componentId>
-  </properties>
+  <description>Template routes based on Apache Velocity.</description>
 
   <dependencyManagement>
     <dependencies>
