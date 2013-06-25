@@ -25,7 +25,7 @@ limitations under the License.
   </parent>
   <groupId>com.github.heuermh.sparkling</groupId>
   <artifactId>sparkling-multimodule</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0-rc1</version>
   <packaging>pom</packaging>
 
   <name>sparkling-multimodule</name>
@@ -36,6 +36,7 @@ limitations under the License.
     <connection>scm:git:git@github.com:heuermh/sparkling.git</connection>
     <developerConnection>scm:git:git@github.com:heuermh/sparkling.git</developerConnection>
     <url>git@github.com:heuermh/sparkling.git</url>
+    <tag>sparkling-multimodule-1.0-rc1</tag>
   </scm>
   <licenses>
     <license>
