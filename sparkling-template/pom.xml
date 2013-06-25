@@ -21,7 +21,7 @@ limitations under the License.
   <parent>
     <groupId>com.github.heuermh.sparkling</groupId>
     <artifactId>sparkling-multimodule</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0-rc4</version>
   </parent>
   <groupId>com.github.heuermh.sparkling</groupId>
   <artifactId>sparkling-template-multimodule</artifactId>
