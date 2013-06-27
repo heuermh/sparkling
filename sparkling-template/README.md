@@ -28,7 +28,7 @@ To build velocity example
 
 To run velocity example
 
-    $ java -jar target/sparkling-template-velocity-example-1.0-SNAPSHOT-jar-with-dependencies.jar 
+    $ java -jar target/sparkling-template-velocity-example-1.1-SNAPSHOT-jar-with-dependencies.jar 
     == Sparkling has ignited ...
     >> Listening on 0.0.0.0:4567
 
