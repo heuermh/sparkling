@@ -25,27 +25,23 @@ import sparkling.webserver.SparklingServerFactory;
 /**
  * The main building block of a Sparkling application is a set of routes. A route is
  * made up of three simple pieces:
- * <p/>
+ * <p>
  * <ul>
  * <li>A verb (get, post, put, delete, head, trace, connect, options)</li>
  * <li>A path (/hello, /users/:name)</li>
  * <li>A callback ( handle(Request request, Response response) )</li>
  * </ul>
- * <p/>
+ * </p>
+ * <p>
  * Example:
- * <p/>
  * <pre>
- * {@code
  * Sparkling.get(new Route("/hello") {
  *    public Object handle(Request request, Response response) {
  *       return "Hello World!";
  *    }
  * });
  * </pre>
- * <p/>
- * <code>
- * <p/>
- * </code>
+ * </p>
  *
  * @author Per Wendel
  */

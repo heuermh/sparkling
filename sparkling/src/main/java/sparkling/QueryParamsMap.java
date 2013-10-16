@@ -145,9 +145,9 @@ public class QueryParamsMap {
      * 
      * </code>
      * 
-     * @param key
+     * @param keys
      *            The paramater nested key
-     * @return
+     * @return an element for the specified key
      */
     public QueryParamsMap get(String... keys) {
         QueryParamsMap ret = this;
@@ -165,7 +165,7 @@ public class QueryParamsMap {
      * Returns the value for this key. <br>
      * If this key has nested elements and does not have a value returns null.
      * 
-     * @return
+     * @return the value for this key
      */
     public String value() {
         if (hasValue()) {
@@ -185,8 +185,8 @@ public class QueryParamsMap {
      * get("user").value("name")
      * </code>
      * 
-     * @param key
-     * @return
+     * @param keys
+     * @return the value for that key
      */
     public String value(String... keys) {
         return get(keys).value();

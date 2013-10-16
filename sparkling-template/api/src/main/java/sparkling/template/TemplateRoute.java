@@ -27,7 +27,6 @@ import sparkling.Route;
  *
  * Example:
  * <pre>
- * {@code
  * Sparkling.get(new TemplateRoute("/hello/:name") {
  *    public Object handle(Request request, Response response) {
  *       Person person = Person.find(request.params("name"));

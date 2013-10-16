@@ -41,7 +41,7 @@ public interface RouteMatcher {
      * 
      * @param httpMethod
      * @param route
-     * @return
+     * @return target route for the requested route path
      */
     RouteMatch findTargetForRequestedRoute(HttpMethod httpMethod, String route);
 
