@@ -89,6 +89,8 @@ limitations under the License.
           <configuration>
             <source>${maven.compile.source}</source>
             <target>${maven.compile.target}</target>
+            <optimize>true</optimize>
+            <debug>true</debug>
           </configuration>
         </plugin>
         <plugin>
