@@ -23,14 +23,15 @@ import sparkling.route.RouteMatch;
 
 public final class RequestResponseFactory {
 
-    private RequestResponseFactory() {}
-    
-    public static Request create(RouteMatch match, HttpServletRequest request) {
+    private RequestResponseFactory() {
+        // empty
+    }
+
+    public static Request create(final RouteMatch match, final HttpServletRequest request) {
         return new Request(match, request);
     }
-    
-    public static Response create(HttpServletResponse response) {
+
+    public static Response create(final HttpServletResponse response) {
         return new Response(response);
     }
-    
 }

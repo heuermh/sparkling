@@ -24,22 +24,22 @@ class ResponseWrapper extends Response {
 
     private Response delegate;
 
-    public void setDelegate(Response delegate) {
+    public void setDelegate(final Response delegate) {
         this.delegate = delegate;
     }
 
     @Override
-    public void status(int statusCode) {
+    public void status(final int statusCode) {
         delegate.status(statusCode);
     }
 
     @Override
-    public void body(String body) {
+    public void body(final String body) {
         delegate.body(body);
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         return delegate.equals(obj);
     }
 
@@ -54,17 +54,17 @@ class ResponseWrapper extends Response {
     }
 
     @Override
-    public void redirect(String location) {
+    public void redirect(final String location) {
         delegate.redirect(location);
     }
 
     @Override
-    public void redirect(String location, int httpStatusCode) {
+    public void redirect(final String location, final int httpStatusCode) {
         delegate.redirect(location, httpStatusCode);
     }
 
     @Override
-    public void header(String header, String value) {
+    public void header(final String header, final String value) {
         delegate.header(header, value);
     }
 
@@ -74,27 +74,27 @@ class ResponseWrapper extends Response {
     }
 
     @Override
-    public void type(String contentType) {
+    public void type(final String contentType) {
         delegate.type(contentType);
     }
 
     @Override
-    public void cookie(String name, String value) {
+    public void cookie(final String name, final String value) {
         delegate.cookie(name, value);
     }
 
     @Override
-    public void cookie(String name, String value, int maxAge) {
+    public void cookie(final String name, final String value, final int maxAge) {
         delegate.cookie(name, value, maxAge);
     }
 
     @Override
-    public void cookie(String name, String value, int maxAge, boolean secured) {
+    public void cookie(final String name, final String value, final int maxAge, final boolean secured) {
         delegate.cookie(name, value, maxAge, secured);
     }
 
     @Override
-    public void removeCookie(String name) {
+    public void removeCookie(final String name) {
         delegate.removeCookie(name);
     }
 }

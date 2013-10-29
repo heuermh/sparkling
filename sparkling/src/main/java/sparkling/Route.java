@@ -25,24 +25,22 @@ package sparkling;
  * @author Per Wendel
  */
 public abstract class Route extends AbstractRoute {
+    private final String path;
 
-    private String path;
-    
     /**
      * Constructor
      * 
      * @param path The route path which is used for matching. (e.g. /hello, users/:name) 
      */
-    protected Route(String path) {
+    protected Route(final String path) {
         this.path = path;
     }
-    
+
     /**
      * Invoked when a request is made on this route's corresponding path e.g. '/hello'
-     * 
+     *
      * @param request The request object providing information about the HTTP request
      * @param response The response object providing functionality for modifying the response
-     * 
      * @return The content to be set in the response
      */
     public abstract Object handle(Request request, Response response);
@@ -53,5 +51,4 @@ public abstract class Route extends AbstractRoute {
     String getPath() {
         return this.path;
     }
-    
 }

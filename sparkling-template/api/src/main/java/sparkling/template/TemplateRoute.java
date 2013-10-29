@@ -42,7 +42,7 @@ public abstract class TemplateRoute extends Route {
      * 
      * @param path The route path which is used for matching. (e.g. /hello, users/:name) 
      */
-    protected TemplateRoute(String path) {
+    protected TemplateRoute(final String path) {
         super(path);
     }
 
@@ -93,7 +93,7 @@ public abstract class TemplateRoute extends Route {
          *
          * @return The content of this template rendered with the specified key value pair as context
          */
-        public final Object render(String key, Object value) {
+        public final Object render(final String key, final Object value) {
             Map<String, Object> context = new HashMap<String, Object>();
             context.put(key, value);
             return render(context);
@@ -109,7 +109,7 @@ public abstract class TemplateRoute extends Route {
          *
          * @return The content of this template rendered with the specified key value pairs as context
          */
-        public final Object render(String key1, Object value1, String key2, Object value2) {
+        public final Object render(final String key1, final Object value1, final String key2, final Object value2) {
             Map<String, Object> context = new HashMap<String, Object>();
             context.put(key1, value1);
             context.put(key2, value2);
@@ -128,7 +128,7 @@ public abstract class TemplateRoute extends Route {
          *
          * @return The content of this template rendered with the specified key value pairs as context
          */
-        public final Object render(String key1, Object value1, String key2, Object value2, String key3, Object value3) {
+        public final Object render(final String key1, final Object value1, final String key2, final Object value2, final String key3, final Object value3) {
             Map<String, Object> context = new HashMap<String, Object>();
             context.put(key1, value1);
             context.put(key2, value2);
@@ -150,7 +150,7 @@ public abstract class TemplateRoute extends Route {
          *
          * @return The content of this template rendered with the specified key value pairs as context
          */
-        public final Object render(String key1, Object value1, String key2, Object value2, String key3, Object value3, String key4, Object value4) {
+        public final Object render(final String key1, final Object value1, final String key2, final Object value2, final String key3, final Object value3, final String key4, final Object value4) {
             Map<String, Object> context = new HashMap<String, Object>();
             context.put(key1, value1);
             context.put(key2, value2);
@@ -175,7 +175,7 @@ public abstract class TemplateRoute extends Route {
          *
          * @return The content of this template rendered with the specified key value pairs as context
          */
-        public final Object render(String key1, Object value1, String key2, Object value2, String key3, Object value3, String key4, Object value4, String key5, Object value5) {
+        public final Object render(final String key1, final Object value1, final String key2, final Object value2, final String key3, final Object value3, final String key4, final Object value4, final String key5, final Object value5) {
             Map<String, Object> context = new HashMap<String, Object>();
             context.put(key1, value1);
             context.put(key2, value2);

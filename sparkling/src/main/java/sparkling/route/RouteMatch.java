@@ -22,13 +22,12 @@ package sparkling.route;
  * @author Per Wendel
  */
 public class RouteMatch {
+    private final HttpMethod httpMethod;
+    private final Object target;
+    private final String matchUri;
+    private final String requestURI;
 
-    private HttpMethod httpMethod;
-    private Object target;
-    private String matchUri;
-    private String requestURI;
-    
-    public RouteMatch(HttpMethod httpMethod, Object target, String matchUri, String requestUri) {
+    public RouteMatch(final HttpMethod httpMethod, final Object target, final String matchUri, final String requestUri) {
         super();
         this.httpMethod = httpMethod;
         this.target = target;
@@ -36,14 +35,14 @@ public class RouteMatch {
         this.requestURI = requestUri;
     }
 
-    
+
     /**
      * @return the httpMethod
      */
     public HttpMethod getHttpMethod() {
         return httpMethod;
     }
-    
+
     /**
      * @return the target
      */
@@ -51,7 +50,6 @@ public class RouteMatch {
         return target;
     }
 
-    
     /**
      * @return the matchUri
      */
@@ -59,13 +57,10 @@ public class RouteMatch {
         return matchUri;
     }
 
-    
     /**
      * @return the requestUri
      */
     public String getRequestURI() {
         return requestURI;
     }
-    
-    
 }

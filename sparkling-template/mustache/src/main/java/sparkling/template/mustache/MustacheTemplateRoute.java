@@ -47,7 +47,7 @@ public abstract class MustacheTemplateRoute extends TemplateRoute {
      * 
      * @param path The route path which is used for matching. (e.g. /hello, users/:name) 
      */
-    protected MustacheTemplateRoute(String path) {
+    protected MustacheTemplateRoute(final String path) {
         super(path);
         mustacheFactory = new DefaultMustacheFactory();
     }
@@ -58,7 +58,7 @@ public abstract class MustacheTemplateRoute extends TemplateRoute {
      * @param path The route path which is used for matching. (e.g. /hello, users/:name)
      * @param mustacheFactory The mustache factory, must not be null.
      */
-    protected MustacheTemplateRoute(String path, MustacheFactory mustacheFactory) {
+    protected MustacheTemplateRoute(final String path, final MustacheFactory mustacheFactory) {
         super(path);
         if (mustacheFactory == null) {
             throw new NullPointerException("mustacheFactory must not be null");
@@ -68,7 +68,7 @@ public abstract class MustacheTemplateRoute extends TemplateRoute {
 
 
     @Override
-    public final Template template(String name) {
+    public final Template template(final String name) {
         return new MustacheTemplate(mustacheFactory.compile(name));
     }
 
@@ -78,12 +78,12 @@ public abstract class MustacheTemplateRoute extends TemplateRoute {
     private final class MustacheTemplate extends Template {
         private final Mustache mustache;
 
-        private MustacheTemplate(Mustache mustache) {
+        private MustacheTemplate(final Mustache mustache) {
             this.mustache = mustache;
         }
 
         @Override
-        public Object render(Map<String, Object> context) {
+        public Object render(final Map<String, Object> context) {
             StringWriter writer = new StringWriter();
             mustache.execute(writer, context);
             writer.flush();

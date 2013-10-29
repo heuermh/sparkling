@@ -48,7 +48,7 @@ public abstract class VelocityTemplateRoute extends TemplateRoute {
      * 
      * @param path The route path which is used for matching. (e.g. /hello, users/:name) 
      */
-    protected VelocityTemplateRoute(String path) {
+    protected VelocityTemplateRoute(final String path) {
         super(path);
 
         Properties properties = new Properties();
@@ -64,7 +64,7 @@ public abstract class VelocityTemplateRoute extends TemplateRoute {
      * @param path The route path which is used for matching. (e.g. /hello, users/:name)
      * @param velocityEngine The velocity engine, must not be null.
      */
-    protected VelocityTemplateRoute(String path, VelocityEngine velocityEngine) {
+    protected VelocityTemplateRoute(final String path, final VelocityEngine velocityEngine) {
         super(path);
         if (velocityEngine == null) {
             throw new NullPointerException("velocityEngine must not be null");
@@ -74,7 +74,7 @@ public abstract class VelocityTemplateRoute extends TemplateRoute {
 
 
     @Override
-    public final Template template(String name) {
+    public final Template template(final String name) {
         return new VelocityTemplate(velocityEngine.getTemplate(name));
     }
 
@@ -84,12 +84,12 @@ public abstract class VelocityTemplateRoute extends TemplateRoute {
     private final class VelocityTemplate extends Template {
         private final org.apache.velocity.Template template;
 
-        private VelocityTemplate(org.apache.velocity.Template template) {
+        private VelocityTemplate(final org.apache.velocity.Template template) {
             this.template = template;
         }
 
         @Override
-        public Object render(Map<String, Object> context) {
+        public Object render(final Map<String, Object> context) {
             VelocityContext velocityContext = new VelocityContext(context);
             StringWriter writer = new StringWriter();
             template.merge(velocityContext, writer);

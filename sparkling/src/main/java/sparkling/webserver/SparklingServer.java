@@ -22,7 +22,7 @@ package sparkling.webserver;
  * @author Per Wendel
  */
 public interface SparklingServer {
-    
+
     /**
      * Ignites the sparkling server, listening on the specified port, running SSL secured with the specified keystore
      * and truststore.  If truststore is null, keystore is reused.
@@ -37,17 +37,17 @@ public interface SparklingServer {
      * @param externalFilesLocation    - the route to static files external to classPath.
      */
     void ignite(
-            String host, 
-            int port, 
-            String keystoreFile, 
-            String keystorePassword, 
-            String truststoreFile, 
+            String host,
+            int port,
+            String keystoreFile,
+            String keystorePassword,
+            String truststoreFile,
             String truststorePassword,
             String staticFilesRoute,
             String externalFilesLocation);
-    
+
     /**
      * Stops the sparkling server
      */
-	void stop();
+    void stop();
 }

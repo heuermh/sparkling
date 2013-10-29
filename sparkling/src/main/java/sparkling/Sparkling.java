@@ -46,15 +46,14 @@ import sparkling.webserver.SparklingServerFactory;
  * @author Per Wendel
  */
 public final class Sparkling {
-
-    private static final int SPARKLING_DEFAULT_PORT = 4567;
-
+    static final int DEFAULT_PORT = 4567;
+    static final String DEFAULT_IP_ADDRESS = "0.0.0.0";
     private static boolean initialized = false;
 
     private static SparklingServer server;
     private static RouteMatcher routeMatcher;
-    private static String ipAddress = "0.0.0.0";
-    private static int port = SPARKLING_DEFAULT_PORT;
+    private static String ipAddress = DEFAULT_IP_ADDRESS;
+    private static int port = DEFAULT_PORT;
 
     private static String keystoreFile;
     private static String keystorePassword;
@@ -64,8 +63,8 @@ public final class Sparkling {
     private static String staticFileFolder = null;
     private static String externalStaticFileFolder = null;
 
-    // Hide constructor
     private Sparkling() {
+        // empty
     }
 
     /**
@@ -75,7 +74,7 @@ public final class Sparkling {
      *
      * @param ipAddress The ipAddress
      */
-    public static synchronized void setIpAddress(String ipAddress) {
+    public static synchronized void setIpAddress(final String ipAddress) {
         if (initialized) {
             throwBeforeRouteMappingException();
         }
@@ -88,7 +87,7 @@ public final class Sparkling {
      *
      * @param port The port number
      */
-    public static synchronized void setPort(int port) {
+    public static synchronized void setPort(final int port) {
         if (initialized) {
             throwBeforeRouteMappingException();
         }
@@ -111,16 +110,15 @@ public final class Sparkling {
      *                           keystore
      * @param truststorePassword the trust store password
      */
-    public static synchronized void setSecure(String keystoreFile,
-                                              String keystorePassword, String truststoreFile,
-                                              String truststorePassword) {
+    public static synchronized void setSecure(final String keystoreFile,
+                                              final String keystorePassword, final String truststoreFile,
+                                              final String truststorePassword) {
         if (initialized) {
             throwBeforeRouteMappingException();
         }
 
         if (keystoreFile == null) {
-            throw new IllegalArgumentException(
-                    "Must provide a keystore file to run secured");
+            throw new IllegalArgumentException("Must provide a keystore file to run secured");
         }
 
         Sparkling.keystoreFile = keystoreFile;
@@ -135,7 +133,7 @@ public final class Sparkling {
      *
      * @param folder the folder in classpath.
      */
-    public static synchronized void staticFileLocation(String folder) {
+    public static synchronized void staticFileLocation(final String folder) {
         if (initialized) {
             throwBeforeRouteMappingException();
         }
@@ -148,7 +146,7 @@ public final class Sparkling {
      *
      * @param externalFolder the external folder serving static files.
      */
-    public static synchronized void externalStaticFileLocation(String externalFolder) {
+    public static synchronized void externalStaticFileLocation(final String externalFolder) {
         if (initialized) {
             throwBeforeRouteMappingException();
         }
@@ -160,7 +158,7 @@ public final class Sparkling {
      *
      * @param route The route
      */
-    public static synchronized void get(Route route) {
+    public static synchronized void get(final Route route) {
         addRoute(HttpMethod.get.name(), route);
     }
 
@@ -169,7 +167,7 @@ public final class Sparkling {
      *
      * @param route The route
      */
-    public static synchronized void post(Route route) {
+    public static synchronized void post(final Route route) {
         addRoute(HttpMethod.post.name(), route);
     }
 
@@ -178,7 +176,7 @@ public final class Sparkling {
      *
      * @param route The route
      */
-    public static synchronized void put(Route route) {
+    public static synchronized void put(final Route route) {
         addRoute(HttpMethod.put.name(), route);
     }
 
@@ -187,7 +185,7 @@ public final class Sparkling {
      *
      * @param route The route
      */
-    public static synchronized void patch(Route route) {
+    public static synchronized void patch(final Route route) {
         addRoute(HttpMethod.patch.name(), route);
     }
 
@@ -196,7 +194,7 @@ public final class Sparkling {
      *
      * @param route The route
      */
-    public static synchronized void delete(Route route) {
+    public static synchronized void delete(final Route route) {
         addRoute(HttpMethod.delete.name(), route);
     }
 
@@ -205,7 +203,7 @@ public final class Sparkling {
      *
      * @param route The route
      */
-    public static synchronized void head(Route route) {
+    public static synchronized void head(final Route route) {
         addRoute(HttpMethod.head.name(), route);
     }
 
@@ -214,7 +212,7 @@ public final class Sparkling {
      *
      * @param route The route
      */
-    public static synchronized void trace(Route route) {
+    public static synchronized void trace(final Route route) {
         addRoute(HttpMethod.trace.name(), route);
     }
 
@@ -223,7 +221,7 @@ public final class Sparkling {
      *
      * @param route The route
      */
-    public static synchronized void connect(Route route) {
+    public static synchronized void connect(final Route route) {
         addRoute(HttpMethod.connect.name(), route);
     }
 
@@ -232,7 +230,7 @@ public final class Sparkling {
      *
      * @param route The route
      */
-    public static synchronized void options(Route route) {
+    public static synchronized void options(final Route route) {
         addRoute(HttpMethod.options.name(), route);
     }
 
@@ -241,7 +239,7 @@ public final class Sparkling {
      *
      * @param filter The filter
      */
-    public static synchronized void before(Filter filter) {
+    public static synchronized void before(final Filter filter) {
         addFilter(HttpMethod.before.name(), filter);
     }
 
@@ -250,7 +248,7 @@ public final class Sparkling {
      *
      * @param filter The filter
      */
-    public static synchronized void after(Filter filter) {
+    public static synchronized void after(final Filter filter) {
         addFilter(HttpMethod.after.name(), filter);
     }
 
@@ -274,7 +272,7 @@ public final class Sparkling {
         initialized = false;
     }
 
-    private static void addRoute(String httpMethod, Route route) {
+    private static void addRoute(final String httpMethod, final Route route) {
         init();
         routeMatcher.parseValidateAddRoute(httpMethod + " '" + route.getPath()
                 + "'", route);
@@ -316,40 +314,40 @@ public final class Sparkling {
         throw new IllegalStateException(
                 "This must be done before route mapping has begun");
     }
-    
+
     /*
      * TODO: discover new TODOs.
-     * 
-     * 
-     * TODO: Make available as maven dependency, upload on repo etc... 
-     * TODO: Add *, splat possibility 
+     *
+     *
+     * TODO: Make available as maven dependency, upload on repo etc...
+     * TODO: Add *, splat possibility
      * TODO: Add validation of routes, invalid characters and stuff, also validate parameters, check static, ONGOING
-     * 
+     *
      * TODO: Javadoc
-     * 
-     * TODO: Create maven archetype, "ONGOING" 
+     *
+     * TODO: Create maven archetype, "ONGOING"
      * TODO: Add cache-control helpers
-     * 
-     * advanced TODO list: 
+     *
+     * advanced TODO list:
      * TODO: Add regexp URIs
-     * 
+     *
      * Ongoing
-     * 
-     * Done 
-     * TODO: Routes are matched in the order they are defined. The rirst route that matches the request is invoked. ??? 
-     * TODO: Before method for filters...check sinatra page 
-     * TODO: Setting Headers 
-     * TODO: Do we want get-prefixes for all *getters* or do we want a more ruby like approach???
-     * (Maybe have two choices?) 
-     * TODO: Setting Body, Status Code 
-     * TODO: Add possibility to set content type on return, DONE 
-     * TODO: Add possibility to access HttpServletContext in method impl, DONE 
-     * TODO: Redirect func in web context, DONE 
-     * TODO: Refactor, extract interfaces, DONE 
-     * TODO: Figure out a nice name, DONE - SPARKLING 
-     * TODO: Add /uri/{param} possibility, DONE 
-     * TODO: Tweak log4j config, DONE 
-     * TODO: Query string in web context, DONE 
+     *
+     * Done
+     * TODO: Routes are matched in the order they are defined. The rirst route that matches the request is invoked. ???
+     * TODO: Before method for filters...check sinatra page
+     * TODO: Setting Headers
+     * TODO: Do we want get-prefixes for all *getters* or do we want a more ruby like approach??
+     * (Maybe have two choices?)
+     * TODO: Setting Body, Status Code
+     * TODO: Add possibility to set content type on return, DONE
+     * TODO: Add possibility to access HttpServletContext in method impl, DONE
+     * TODO: Redirect func in web context, DONE
+     * TODO: Refactor, extract interfaces, DONE
+     * TODO: Figure out a nice name, DONE - SPARKLING
+     * TODO: Add /uri/{param} possibility, DONE
+     * TODO: Tweak log4j config, DONE
+     * TODO: Query string in web context, DONE
      * TODO: Add URI-param fetching from webcontext ie. ?param=value&param2=...etc, AND headers, DONE
      * TODO: sessions? (use session servlet context?) DONE
      */

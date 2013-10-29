@@ -39,7 +39,6 @@ import javax.servlet.http.HttpServletRequest;
  * 
  */
 public class QueryParamsMap {
-
     private static final QueryParamsMap NULL = new NullQueryParamsMap();
 
     /** Holds the nested keys */
@@ -54,10 +53,10 @@ public class QueryParamsMap {
      * Creates a new QueryParamsMap from and HttpServletRequest. <br>
      * Parses the parameters from request.getParameterMap() <br>
      * No need to decode, since HttpServletRequest does it for us.
-     * 
+     *
      * @param request
      */
-    public QueryParamsMap(HttpServletRequest request) {
+    public QueryParamsMap(final HttpServletRequest request) {
         if (request == null) {
             throw new IllegalArgumentException("HttpServletRequest cannot be null.");
         }
@@ -66,35 +65,35 @@ public class QueryParamsMap {
 
     // Just for testing
     protected QueryParamsMap() {
+        // empty
     }
 
-    
     /**
      * Parses the key and creates the child QueryParamMaps
-     * 
+     *
      * user[info][name] creates 3 nested QueryParamMaps. For user, info and
      * name.
-     * 
+     *
      * @param key
      *            The key in the formar fo key1[key2][key3] (for example:
      *            user[info][name]).
      * @param values
      */
-    protected QueryParamsMap(String key, String... values) {
+    protected QueryParamsMap(final String key, final String... values) {
         loadKeys(key, values);
     }
 
-    protected QueryParamsMap(Map<String, String[]> params) {
+    protected QueryParamsMap(final Map<String, String[]> params) {
         loadQueryString(params);
     }
 
-    protected final void loadQueryString(Map<String, String[]> params) {
+    protected final void loadQueryString(final Map<String, String[]> params) {
         for (Map.Entry<String, String[]> param : params.entrySet()) {
             loadKeys(param.getKey(), param.getValue());
         }
     }
 
-    protected final void loadKeys(String key, String[] value) {
+    protected final void loadKeys(final String key, final String[] value) {
         String[] parsed = parseKey(key);
 
         if (parsed == null) {
@@ -106,25 +105,28 @@ public class QueryParamsMap {
         }
         if (!parsed[1].isEmpty()) {
             queryMap.get(parsed[0]).loadKeys(parsed[1], value);
-        } else {
+        }
+        else {
             queryMap.get(parsed[0]).values = value.clone();
         }
     }
 
-    protected final String[] parseKey(String key) {
+    protected final String[] parseKey(final String key) {
         Matcher m = p.matcher(key);
 
         if (m.find()) {
             return new String[] { cleanKey(m.group()), key.substring(m.end()) };
-        } else {
-            return null; // NOSONAR
+        }
+        else {
+            return null;
         }
     }
 
-    protected static final String cleanKey(String group) {
+    protected static final String cleanKey(final String group) {
         if (group.startsWith("[")) {
             return group.substring(1, group.length() - 1);
-        } else {
+        }
+        else {
             return group;
         }
     }
@@ -142,19 +144,20 @@ public class QueryParamsMap {
      * or
      * <br>
      * get("user","name").value() #  fede
-     * 
+     *
      * </code>
-     * 
+     *
      * @param keys
      *            The paramater nested key
      * @return an element for the specified key
      */
-    public QueryParamsMap get(String... keys) {
+    public QueryParamsMap get(final String... keys) {
         QueryParamsMap ret = this;
         for (String key : keys) {
             if (ret.queryMap.containsKey(key)) {
                 ret = ret.queryMap.get(key);
-            } else {
+            }
+            else {
                 ret = NULL;
             }
         }
@@ -164,31 +167,32 @@ public class QueryParamsMap {
     /**
      * Returns the value for this key. <br>
      * If this key has nested elements and does not have a value returns null.
-     * 
+     *
      * @return the value for this key
      */
     public String value() {
         if (hasValue()) {
             return values[0];
-        } else {
+        }
+        else {
             return null;
         }
     }
 
     /**
      * Returns the value for that key. <br>
-     * 
+     *
      * It is a shortcut for: <br>
      * <br>
      * <code>
      * get("user").get("name").value()
      * get("user").value("name")
      * </code>
-     * 
+     *
      * @param keys
      * @return the value for that key
      */
-    public String value(String... keys) {
+    public String value(final String... keys) {
         return get(keys).value();
     }
 
@@ -223,22 +227,20 @@ public class QueryParamsMap {
     public String[] values() {
         return this.values.clone();
     }
-    
+
     /**
      * @return the queryMap
      */
     Map<String, QueryParamsMap> getQueryMap() {
         return queryMap;
     }
-    
+
     /**
      * @return the values
      */
     String[] getValues() {
         return values;
     }
-
-
 
     private static class NullQueryParamsMap extends QueryParamsMap {
         public NullQueryParamsMap() {
@@ -252,7 +254,6 @@ public class QueryParamsMap {
         for (Entry<String, QueryParamsMap> key : this.queryMap.entrySet()) {
             map.put(key.getKey(), key.getValue().values);
         }
-
         return map;
     }
 }

@@ -18,14 +18,15 @@ package sparkling;
 
 public final class Access {
 
-    private Access() {}
-    
-    public static String getBody(Response response) {
+    private Access() {
+        // empty
+    }
+
+    public static String getBody(final Response response) {
         return response.body();
     }
 
     public static void runFromServlet() {
         Sparkling.runFromServlet();
     }
-
 }

@@ -46,13 +46,12 @@ public class SparklingFilter implements Filter {
     public static final String APPLICATION_CLASS_PARAM = "applicationClass";
 
     private static final Logger LOG = LoggerFactory.getLogger(SparklingFilter.class);
-    
-    private String filterPath;
 
+    private String filterPath;
     private MatcherFilter matcherFilter;
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(final FilterConfig filterConfig) throws ServletException {
         Access.runFromServlet();
 
         final SparklingApplication application = getApplication(filterConfig);
@@ -71,24 +70,26 @@ public class SparklingFilter implements Filter {
      * @return the sparkling application containing the configuration.
      * @throws ServletException if anything went wrong.
      */
-    protected SparklingApplication getApplication(FilterConfig filterConfig) throws ServletException {
+    protected SparklingApplication getApplication(final FilterConfig filterConfig) throws ServletException {
         try {
             String applicationClassName = filterConfig.getInitParameter(APPLICATION_CLASS_PARAM);
             Class<?> applicationClass = Class.forName(applicationClassName);
             return (SparklingApplication) applicationClass.newInstance();
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             throw new ServletException(e);
         }
     }
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        HttpServletRequest httpRequest = (HttpServletRequest) request; // NOSONAR
-        
+    public void doFilter(final ServletRequest request, final ServletResponse response, final FilterChain chain)
+            throws IOException, ServletException {
+
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
         final String relativePath = FilterTools.getRelativePath(httpRequest, filterPath);
-        
+
         LOG.debug(relativePath);
-        
+
         HttpServletRequestWrapper requestWrapper = new HttpServletRequestWrapper(httpRequest) {
             @Override
             public String getRequestURI() {
@@ -102,5 +103,4 @@ public class SparklingFilter implements Filter {
     public void destroy() {
         // ignore
     }
-
 }

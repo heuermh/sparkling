@@ -33,7 +33,7 @@ import org.eclipse.jetty.util.ssl.SslContextFactory;
 
 /**
  * Sparkling server implementation
- * 
+ *
  * @author Per Wendel
  */
 class SparklingServerImpl implements SparklingServer {
@@ -52,12 +52,13 @@ class SparklingServerImpl implements SparklingServer {
             String keystorePassword, String truststoreFile,
             String truststorePassword, String staticFilesFolder,
             String externalFilesFolder) {
-        
+
         ServerConnector connector;
-        
+
         if (keystoreFile == null) {
             connector = createSocketConnector();
-        } else {
+        }
+        else {
             connector = createSecureSocketConnector(keystoreFile,
                     keystorePassword, truststoreFile, truststorePassword);
         }
@@ -74,13 +75,14 @@ class SparklingServerImpl implements SparklingServer {
         // Handle static file routes
         if (staticFilesFolder == null && externalFilesFolder == null) {
             server.setHandler(handler);
-        } else {
+        }
+        else {
             List<Handler> handlersInList = new ArrayList<Handler>();
             handlersInList.add(handler);
-            
+
             // Set static file location
             setStaticFileLocationIfPresent(staticFilesFolder, handlersInList);
-            
+
             // Set external static file location
             setExternalStaticFileLocationIfPresent(externalFilesFolder, handlersInList);
 
@@ -88,51 +90,51 @@ class SparklingServerImpl implements SparklingServer {
             handlers.setHandlers(handlersInList.toArray(new Handler[handlersInList.size()]));
             server.setHandler(handlers);
         }
-        
-        
+
         try {
-            System.out.println("== " + NAME + " has ignited ..."); // NOSONAR
-            System.out.println(">> Listening on " + host + ":" + port); // NOSONAR
+            System.out.println("== " + NAME + " has ignited ...");
+            System.out.println(">> Listening on " + host + ":" + port);
 
             server.start();
             server.join();
-        } catch (Exception e) {
-            e.printStackTrace(); // NOSONAR
-            System.exit(100); // NOSONAR
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            System.exit(100);
         }
     }
 
     @Override
     public void stop() {
-        System.out.print(">>> " + NAME + " shutting down..."); // NOSONAR
+        System.out.print(">>> " + NAME + " shutting down...");
         try {
             if (server != null) {
                 server.stop();
             }
-        } catch (Exception e) {
-            e.printStackTrace(); // NOSONAR
-            System.exit(100); // NOSONAR
         }
-        System.out.println("done"); // NOSONAR
+        catch (Exception e) {
+            e.printStackTrace();
+            System.exit(100);
+        }
+        System.out.println("done");
     }
 
     /**
      * Creates a secure jetty socket connector. Keystore required, truststore
      * optional. If truststore not specifed keystore will be reused.
-     * 
+     *
      * @param keystoreFile The keystore file location as string
      * @param keystorePassword the password for the keystore
      * @param truststoreFile the truststore file location as string, leave null to reuse keystore
      * @param truststorePassword the trust store password
-     * 
+     *
      * @return a secure socket connector
      */
-    private static ServerConnector createSecureSocketConnector(String keystoreFile,
-            String keystorePassword, String truststoreFile,
-            String truststorePassword) {
+    private static ServerConnector createSecureSocketConnector(final String keystoreFile,
+            final String keystorePassword, final String truststoreFile,
+            final String truststorePassword) {
 
-        SslContextFactory sslContextFactory = new SslContextFactory(
-                keystoreFile);
+        SslContextFactory sslContextFactory = new SslContextFactory(keystoreFile);
 
         if (keystorePassword != null) {
             sslContextFactory.setKeyStorePassword(keystorePassword);
@@ -148,7 +150,7 @@ class SparklingServerImpl implements SparklingServer {
 
     /**
      * Creates an ordinary, non-secured Jetty server connector.
-     * 
+     *
      * @return - a server connector
      */
     private static ServerConnector createSocketConnector() {
@@ -158,7 +160,9 @@ class SparklingServerImpl implements SparklingServer {
     /**
      * Sets static file location if present
      */
-    private static void setStaticFileLocationIfPresent(String staticFilesRoute, List<Handler> handlersInList) {
+    private static void setStaticFileLocationIfPresent(final String staticFilesRoute,
+            final List<Handler> handlersInList) {
+
         if (staticFilesRoute != null) {
             ResourceHandler resourceHandler = new ResourceHandler();
             Resource staticResources = Resource.newClassPathResource(staticFilesRoute);
@@ -167,11 +171,13 @@ class SparklingServerImpl implements SparklingServer {
             handlersInList.add(resourceHandler);
         }
     }
-    
+
     /**
      * Sets external static file location if present
      */
-    private static void setExternalStaticFileLocationIfPresent(String externalFilesRoute, List<Handler> handlersInList) {
+    private static void setExternalStaticFileLocationIfPresent(final String externalFilesRoute,
+            final List<Handler> handlersInList) {
+
         if (externalFilesRoute != null) {
             ResourceHandler externalResourceHandler = new ResourceHandler();
             Resource externalStaticResources = Resource.newResource(new File(externalFilesRoute));

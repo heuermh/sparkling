@@ -30,47 +30,45 @@ import org.slf4j.LoggerFactory;
  * @author Per Wendel
  */
 public class Response {
-
-    /** The logger. */
     private static final Logger LOG = LoggerFactory.getLogger(Response.class);
 
     private HttpServletResponse response;
     private String body;
-    
+
     protected Response() {
        // Used by wrapper
     }
-    
-    Response(HttpServletResponse response) {
+
+    Response(final HttpServletResponse response) {
         this.response = response;
     }
-    
-    
+
+
     /**
      * Sets the status code for the response
      */
-    public void status(int statusCode) {
+    public void status(final int statusCode) {
         response.setStatus(statusCode);
     }
-    
+
     /**
      * Sets the content type for the response
      */
-    public void type(String contentType) {
+    public void type(final String contentType) {
         response.setContentType(contentType);
     }
-    
+
     /**
      * Sets the body
      */
-    public void body(String body) {
+    public void body(final String body) {
        this.body = body;
     }
-    
+
     public String body() {
        return this.body;
     }
-    
+
     /**
      * Gets the raw response object handed in by Jetty
      */
@@ -80,17 +78,18 @@ public class Response {
 
     /**
      * Trigger a browser redirect
-     * 
+     *
      * @param location Where to redirect
      */
-    public void redirect(String location) {
+    public void redirect(final String location) {
         if (LOG.isDebugEnabled()) {
             LOG.debug("Redirecting ({} {} to {}", "Found", HttpServletResponse.SC_FOUND, location);
         }
         try {
             response.sendRedirect(location);
-        } catch (IOException ioException) {
-            LOG.warn("Redirect failure", ioException);
+        }
+        catch (IOException e) {
+            LOG.warn("Redirect failure", e);
         }
     }
 
@@ -100,47 +99,48 @@ public class Response {
      * @param location Where to redirect permanently
      * @param httpStatusCode the http status code
      */
-    public void redirect(String location, int httpStatusCode) {
+    public void redirect(final String location, final int httpStatusCode) {
         if (LOG.isDebugEnabled()) {
-            LOG.debug("Redirecting ({} to {}", httpStatusCode, location);    
+            LOG.debug("Redirecting ({} to {}", httpStatusCode, location);
         }
         response.setStatus(httpStatusCode);
         response.setHeader("Location", location);
         response.setHeader("Connection", "close");
         try {
             response.sendError(httpStatusCode);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             LOG.warn("Exception when trying to redirect permanently", e);
         }
     }
-    
+
     /**
      * Adds/Sets a response header
      */
-    public void header(String header, String value) {
+    public void header(final String header, final String value) {
         response.addHeader(header, value);
     }
-    
+
     /**
      * Adds not persistent cookie to the response. 
      * Can be invoked multiple times to insert more than one cookie.
-     * 
+     *
      * @param name name of the cookie
      * @param value value of the cookie
      */
-    public void cookie(String name, String value) {
+    public void cookie(final String name, final String value) {
         cookie(name, value, -1, false);
     }
-    
+
     /**
      * Adds cookie to the response. Can be invoked multiple times to insert more than one cookie.
-     * 
+     *
      * @param name name of the cookie
      * @param value value of the cookie
      * @param maxAge max age of the cookie in seconds (negative for the not persistent cookie,
      * zero - deletes the cookie)
      */
-    public void cookie(String name, String value, int maxAge) {
+    public void cookie(final String name, final String value, final int maxAge) {
         cookie(name, value, maxAge, false);
     }
 
@@ -153,19 +153,19 @@ public class Response {
      * @param secured if true : cookie will be secured
      * zero - deletes the cookie)
      */
-    public void cookie(String name, String value, int maxAge, boolean secured) {
+    public void cookie(final String name, final String value, final int maxAge, final boolean secured) {
         Cookie cookie = new Cookie(name, value);
         cookie.setMaxAge(maxAge);
         cookie.setSecure(secured);
         response.addCookie(cookie);
     }
-    
+
     /**
      * Removes the cookie.
      * 
      * @param name name of the cookie
      */
-    public void removeCookie(String name) {
+    public void removeCookie(final String name) {
         Cookie cookie = new Cookie(name, "");
         cookie.setMaxAge(0);
         response.addCookie(cookie);

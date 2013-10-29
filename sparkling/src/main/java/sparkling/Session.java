@@ -10,15 +10,14 @@ import javax.servlet.http.HttpSession;
  * Provides session information.
  */
 public class Session {
-
-    private HttpSession session;
+    private final HttpSession session;
 
     /**
      * Creates a session with the <code>HttpSession</code>.
      * @param session
      * @throws IllegalArgumentException If the session is null.
      */
-    Session(HttpSession session) {
+    Session(final HttpSession session) {
         if (session == null) {
             throw new IllegalArgumentException("session cannot be null");
         }
@@ -34,22 +33,22 @@ public class Session {
 
     /**
      * Returns the object bound with the specified name in this session, or null if no object is bound under the name.
-     * 
+     *
      * @param name a string specifying the name of the object 
      * @return the object with the specified name 
      */
     @SuppressWarnings("unchecked")
-    public <T> T attribute(String name) {
+    public <T> T attribute(final String name) {
         return (T) session.getAttribute(name);
     }
 
     /**
      * Binds an object to this session, using the name specified.
-     * 
+     *
      * @param name the name to which the object is bound; cannot be null
      * @param value the object to be bound
      */
-    public void attribute(String name, Object value) {
+    public void attribute(final String name, final Object value) {
         session.setAttribute(name, value);
     }
 
@@ -102,7 +101,7 @@ public class Session {
      * 
      * @param interval
      */
-    public void maxInactiveInterval(int interval) {
+    public void maxInactiveInterval(final int interval) {
         session.setMaxInactiveInterval(interval);
     }
 
@@ -124,7 +123,7 @@ public class Session {
      * Removes the object bound with the specified name from this session.
      * @param name the name of the object to remove from this session
      */
-    public void removeAttribute(String name) {
+    public void removeAttribute(final String name) {
         session.removeAttribute(name);
     }
 }

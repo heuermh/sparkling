@@ -29,7 +29,7 @@ final class RequestWrapper extends Request {
 
     private Request delegate;
 
-    public void setDelegate(Request delegate) {
+    public void setDelegate(final Request delegate) {
         this.delegate = delegate;
     }
 
@@ -69,7 +69,7 @@ final class RequestWrapper extends Request {
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         return delegate.equals(obj);
     }
 
@@ -79,7 +79,7 @@ final class RequestWrapper extends Request {
     }
 
     @Override
-    public String params(String param) {
+    public String params(final String param) {
         return delegate.params(param);
     }
     
@@ -99,12 +99,12 @@ final class RequestWrapper extends Request {
     }
 
     @Override
-    public String queryParams(String queryParam) {
+    public String queryParams(final String queryParam) {
         return delegate.queryParams(queryParam);
     }
 
     @Override
-    public String headers(String header) {
+    public String headers(final String header) {
         return delegate.headers(header);
     }
 
@@ -144,12 +144,12 @@ final class RequestWrapper extends Request {
     }
 
     @Override
-    public void attribute(String attribute, Object value) {
+    public void attribute(final String attribute, final Object value) {
         delegate.attribute(attribute, value);
     }
 
     @Override
-    public Object attribute(String attribute) {
+    public Object attribute(final String attribute) {
         return delegate.attribute(attribute);
     }
 
@@ -173,7 +173,7 @@ final class RequestWrapper extends Request {
     }
 
     @Override
-    public QueryParamsMap queryMap(String key) {
+    public QueryParamsMap queryMap(final String key) {
         return delegate.queryMap(key);
     }
 
@@ -183,7 +183,7 @@ final class RequestWrapper extends Request {
     }
 
     @Override
-    public String cookie(String name) {
+    public String cookie(final String name) {
         return delegate.cookie(name);
     }
 }

@@ -19,19 +19,20 @@ package sparkling.webserver;
 import sparkling.route.RouteMatcherFactory;
 
 /**
- * 
+ *
  *
  * @author Per Wendel
  */
 public final class SparklingServerFactory {
 
-    private SparklingServerFactory() {}
-    
-    public static SparklingServer create(boolean hasMultipleHandler) {
+    private SparklingServerFactory() {
+        // empty
+    }
+
+    public static SparklingServer create(final boolean hasMultipleHandler) {
         MatcherFilter matcherFilter = new MatcherFilter(RouteMatcherFactory.get(), false, hasMultipleHandler);
         matcherFilter.init(null);
         JettyHandler handler = new JettyHandler(matcherFilter);
         return new SparklingServerImpl(handler);
     }
-    
 }

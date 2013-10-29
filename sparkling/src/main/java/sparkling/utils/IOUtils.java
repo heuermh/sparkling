@@ -108,9 +108,11 @@ public final class IOUtils {
      * The default buffer size to use.
      */
     private static final int DEFAULT_BUFFER_SIZE = 1024 * 4;
-    
-    private IOUtils() {}
-    
+
+    private IOUtils() {
+        // empty
+    }
+
     // read toString
     //-----------------------------------------------------------------------
     /**
@@ -125,7 +127,7 @@ public final class IOUtils {
      * @throws NullPointerException if the input is null
      * @throws IOException if an I/O error occurs
      */
-    public static String toString(InputStream input) throws IOException {
+    public static String toString(final InputStream input) throws IOException {
         StringWriter sw = new StringWriter();
         copy(input, sw);
         return sw.toString();
@@ -146,9 +148,9 @@ public final class IOUtils {
      * @throws IOException if an I/O error occurs
      * @since Commons IO 1.1
      */
-    public static void copy(InputStream input, Writer output)
+    public static void copy(final InputStream input, final Writer output)
             throws IOException {
-        InputStreamReader in = new InputStreamReader(input); // NOSONAR
+        InputStreamReader in = new InputStreamReader(input);
         copy(in, output);
     }
 
@@ -173,7 +175,7 @@ public final class IOUtils {
      * @throws ArithmeticException if the character count is too large
      * @since Commons IO 1.1
      */
-    public static int copy(Reader input, Writer output) throws IOException {
+    public static int copy(final Reader input, final Writer output) throws IOException {
         long count = copyLarge(input, output);
         if (count > Integer.MAX_VALUE) {
             return -1;
@@ -194,7 +196,7 @@ public final class IOUtils {
      * @throws IOException if an I/O error occurs
      * @since Commons IO 1.3
      */
-    public static long copyLarge(Reader input, Writer output) throws IOException {
+    public static long copyLarge(final Reader input, final Writer output) throws IOException {
         char[] buffer = new char[DEFAULT_BUFFER_SIZE];
         long count = 0;
         int n = 0;
@@ -204,5 +206,4 @@ public final class IOUtils {
         }
         return count;
     }
-
 }

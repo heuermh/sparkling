@@ -27,32 +27,31 @@ import sparkling.utils.SparklingUtils;
  * @author Per Wendel
  */
 public abstract class Filter extends AbstractRoute {
+    private final String path;
 
-    private String path;
-    
     /**
      * Constructs a filter that matches on everything
      */
     protected Filter() {
         this.path = SparklingUtils.ALL_PATHS;
     }
-    
+
     /**
      * Constructor
-     * 
+     *
      * @param path The filter path which is used for matching. (e.g. /hello, users/:name) 
      */
-    protected Filter(String path) {
+    protected Filter(final String path) {
         this.path = path;
     }
-    
+
     /**
      * Invoked when a request is made on this filter's corresponding path e.g. '/hello'
-     * 
+     *
      * @param request The request object providing information about the HTTP request
      * @param response The response object providing functionality for modifying the response
      */
-    public abstract void handle(Request request, Response response);
+    public abstract void handle(final Request request, final Response response);
 
     /**
      * Returns this route's path
@@ -60,5 +59,4 @@ public abstract class Filter extends AbstractRoute {
     String getPath() {
         return this.path;
     }
-    
 }

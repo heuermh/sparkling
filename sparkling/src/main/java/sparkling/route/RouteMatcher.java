@@ -24,33 +24,31 @@ import java.util.List;
  * @author Per Wendel
  */
 public interface RouteMatcher {
-    
     String ROOT = "/";
     char SINGLE_QUOTE = '\'';
-    
+
     /**
      * Parses, validates and adds a route
-     * 
+     *
      * @param route
      * @param target
      */
     void parseValidateAddRoute(String route, Object target);
-    
+
     /**
      * Finds the a target route for the requested route path
-     * 
+     *
      * @param httpMethod
      * @param route
      * @return target route for the requested route path
      */
     RouteMatch findTargetForRequestedRoute(HttpMethod httpMethod, String route);
 
-
     /**
      * Finds the targets for a requested route path (used for filters)
      */
     List<RouteMatch> findTargetsForRequestedRoute(HttpMethod httpMethod, String path);
-    
+
     /**
      * Clear all routes
      */

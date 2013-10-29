@@ -27,18 +27,16 @@ import sparkling.utils.SparklingUtils;
  * @author Per Wendel
  */
 public class SimpleRouteMatcher implements RouteMatcher {
-
     private static final org.slf4j.Logger LOG = org.slf4j.LoggerFactory.getLogger(SimpleRouteMatcher.class);
-    
+
     private List<RouteEntry> routes;
 
     private static class RouteEntry {
-
         private HttpMethod httpMethod;
         private String path;
         private Object target;
 
-        private boolean matches(HttpMethod httpMethod, String path) {
+        private boolean matches(final HttpMethod httpMethod, final String path) {
             if ( (httpMethod == HttpMethod.before || httpMethod == HttpMethod.after)
                             && (this.httpMethod == httpMethod)
                             && this.path.equals(SparklingUtils.ALL_PATHS)) {
@@ -52,8 +50,8 @@ public class SimpleRouteMatcher implements RouteMatcher {
             return match;
         }
 
-        private boolean matchPath(String path) { // NOSONAR
-            if (!this.path.endsWith("*") && ((path.endsWith("/") && !this.path.endsWith("/")) // NOSONAR
+        private boolean matchPath(final String path) {
+            if (!this.path.endsWith("*") && ((path.endsWith("/") && !this.path.endsWith("/"))
                             || (this.path.endsWith("/") && !path.endsWith("/")))) { 
                 // One and not both ends with slash
                 return false;
@@ -67,21 +65,20 @@ public class SimpleRouteMatcher implements RouteMatcher {
             List<String> thisPathList = SparklingUtils.convertRouteToList(this.path);
             List<String> pathList = SparklingUtils.convertRouteToList(path);
 
-            
             int thisPathSize = thisPathList.size();
             int pathSize = pathList.size();
-            
+
             if (thisPathSize == pathSize) {
                 for (int i = 0; i < thisPathSize; i++) {
                     String thisPathPart = thisPathList.get(i);
                     String pathPart = pathList.get(i);
-                    
+
                     if ((i == thisPathSize -1) && (thisPathPart.equals("*") && this.path.endsWith("*"))) {
                         // wildcard match
                         return true;
                     }
-                    
-                    if ((!thisPathPart.startsWith(":")) 
+
+                    if ((!thisPathPart.startsWith(":"))
                             && !thisPathPart.equals(pathPart)
                             && !thisPathPart.equals("*")) {
                         return false;
@@ -89,7 +86,8 @@ public class SimpleRouteMatcher implements RouteMatcher {
                 }
                 // All parts matched
                 return true;
-            } else {
+            }
+            else {
                 // Number of "path parts" not the same
                 // check wild card:
                 if (this.path.endsWith("*")) {
@@ -127,13 +125,13 @@ public class SimpleRouteMatcher implements RouteMatcher {
             return httpMethod.name() + ", " + path + ", " + target;
         }
     }
-    
+
     public SimpleRouteMatcher() {
         routes = new ArrayList<RouteEntry>();
     }
 
     @Override
-    public RouteMatch findTargetForRequestedRoute(HttpMethod httpMethod, String path) {
+    public RouteMatch findTargetForRequestedRoute(final HttpMethod httpMethod, final String path) {
         for (RouteEntry entry : routes) {
             if (entry.matches(httpMethod, path)) {
                 return new RouteMatch(httpMethod, entry.target, entry.path, path);
@@ -141,9 +139,9 @@ public class SimpleRouteMatcher implements RouteMatcher {
         }
         return null;
     }
-    
+
     @Override
-    public List<RouteMatch> findTargetsForRequestedRoute(HttpMethod httpMethod, String path) {
+    public List<RouteMatch> findTargetsForRequestedRoute(final HttpMethod httpMethod, final String path) {
         List<RouteMatch> matchSet = new ArrayList<RouteMatch>();
         for (RouteEntry entry : routes) {
             if (entry.matches(httpMethod, path)) {
@@ -154,17 +152,18 @@ public class SimpleRouteMatcher implements RouteMatcher {
     }
 
     @Override
-    public void parseValidateAddRoute(String route, Object target) {
+    public void parseValidateAddRoute(final String route, final Object target) {
         try {
             int singleQuoteIndex = route.indexOf(SINGLE_QUOTE);
-            String httpMethod = route.substring(0, singleQuoteIndex).trim().toLowerCase(); // NOSONAR
-            String url = route.substring(singleQuoteIndex + 1, route.length() - 1).trim(); // NOSONAR
+            String httpMethod = route.substring(0, singleQuoteIndex).trim().toLowerCase();
+            String url = route.substring(singleQuoteIndex + 1, route.length() - 1).trim();
 
             // Use special enum stuff to get from value
             HttpMethod method;
             try {
                 method = HttpMethod.valueOf(httpMethod);
-            } catch (IllegalArgumentException e) {
+            }
+            catch (IllegalArgumentException e) {
                 LOG.error("The @Route value: "
                                 + route
                                 + " has an invalid HTTP method part: "
@@ -173,13 +172,13 @@ public class SimpleRouteMatcher implements RouteMatcher {
                 return;
             }
             addRoute(method, url, target);
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             LOG.error("The @Route value: " + route + " is not in the correct format", e);
         }
-
     }
 
-    private void addRoute(HttpMethod method, String url, Object target) {
+    private void addRoute(final HttpMethod method, final String url, final Object target) {
         RouteEntry entry = new RouteEntry();
         entry.httpMethod = method;
         entry.path = url;
@@ -193,5 +192,4 @@ public class SimpleRouteMatcher implements RouteMatcher {
     public void clearRoutes() {
         routes.clear();
     }
-
 }

@@ -22,7 +22,7 @@ package sparkling.servlet;
  * @author Per Wendel
  */
 public interface SparklingApplication {
-    
+
     /**
      * Invoked from the SparklingFilter. Add routes here.
      */

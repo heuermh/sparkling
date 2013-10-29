@@ -27,10 +27,12 @@ import java.util.List;
 public final class SparklingUtils {
 
     public static final String ALL_PATHS = "+/*paths";
-    
-    private SparklingUtils() {}
-    
-    public static List<String> convertRouteToList(String route) {
+
+    private SparklingUtils() {
+        // empty
+    }
+
+    public static List<String> convertRouteToList(final String route) {
         String[] pathArray = route.split("/");
         List<String> path = new ArrayList<String>();
         for (String p : pathArray) {
@@ -40,13 +42,12 @@ public final class SparklingUtils {
         }
         return path;
     }
-    
-    public static boolean isParam(String routePart) {
+
+    public static boolean isParam(final String routePart) {
         return routePart.startsWith(":");
     }
 
-    public static boolean isSplat(String routePart) {
+    public static boolean isSplat(final String routePart) {
         return routePart.equals("*");
     }
-    
 }

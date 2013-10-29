@@ -44,13 +44,11 @@ import sparkling.route.RouteMatcher;
  * @author Per Wendel
  */
 public class MatcherFilter implements Filter {
-
-    private RouteMatcher routeMatcher;
-    private boolean isServletContext;
-    private boolean hasOtherHandlers;
-
-    /** The logger. */
     private static final org.slf4j.Logger LOG = org.slf4j.LoggerFactory.getLogger(MatcherFilter.class);
+
+    private final RouteMatcher routeMatcher;
+    private final boolean isServletContext;
+    private final boolean hasOtherHandlers;
 
     /**
      * Constructor
@@ -59,35 +57,37 @@ public class MatcherFilter implements Filter {
      * @param isServletContext If true, chain.doFilter will be invoked if request is not consumed by Sparkling.
      * @param hasOtherHandlers If true, do nothing if request is not consumed by Sparkling in order to let others handlers process the request.
      */
-    public MatcherFilter(RouteMatcher routeMatcher, boolean isServletContext, boolean hasOtherHandlers) {
+    public MatcherFilter(final RouteMatcher routeMatcher, final boolean isServletContext, final boolean hasOtherHandlers) {
         this.routeMatcher = routeMatcher;
         this.isServletContext = isServletContext;
         this.hasOtherHandlers = hasOtherHandlers;
     }
 
-    public void init(FilterConfig filterConfig) {
+    @Override
+    public void init(final FilterConfig filterConfig) {
         //
     }
 
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, // NOSONAR
-                    FilterChain chain) throws IOException, ServletException { // NOSONAR
+    @Override
+    public void doFilter(final ServletRequest servletRequest, final ServletResponse servletResponse, final FilterChain chain)
+                throws IOException, ServletException {
+
         long t0 = System.currentTimeMillis();
-        HttpServletRequest httpRequest = (HttpServletRequest) servletRequest; // NOSONAR
+        HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
         HttpServletResponse httpResponse = (HttpServletResponse) servletResponse;
 
-        String httpMethodStr = httpRequest.getMethod().toLowerCase(); // NOSONAR
-        String uri = httpRequest.getRequestURI(); // NOSONAR
+        String httpMethodStr = httpRequest.getMethod().toLowerCase();
+        String uri = httpRequest.getRequestURI();
 
         String bodyContent = null;
-
         RequestWrapper req = new RequestWrapper();
         ResponseWrapper res = new ResponseWrapper();
-        
+
         LOG.debug("httpMethod:" + httpMethodStr + ", uri: " + uri);
         try {
             // BEFORE filters
             List<RouteMatch> matchSet = routeMatcher.findTargetsForRequestedRoute(HttpMethod.before, uri);
-            
+
             for (RouteMatch filterMatch : matchSet) {
                 Object filterTarget = filterMatch.getTarget();
                 if (filterTarget instanceof sparkling.Filter) {
@@ -98,7 +98,7 @@ public class MatcherFilter implements Filter {
 
                     req.setDelegate(request);
                     res.setDelegate(response);
-                    
+
                     filter.handle(req, res);
 
                     String bodyAfterFilter = Access.getBody(response);
@@ -107,17 +107,18 @@ public class MatcherFilter implements Filter {
                     }
                 }   
             }
+
             // BEFORE filters, END
-            
             HttpMethod httpMethod = HttpMethod.valueOf(httpMethodStr);
-            
+
             RouteMatch match = null;
             match = routeMatcher.findTargetForRequestedRoute(HttpMethod.valueOf(httpMethodStr), uri);
-            
+
             Object target = null;
             if (match != null) {
                 target = match.getTarget();
-            } else if (httpMethod == HttpMethod.head && bodyContent == null) {
+            }
+            else if (httpMethod == HttpMethod.head && bodyContent == null) {
                 // See if get is mapped to provide default head mapping
                 bodyContent = routeMatcher.findTargetForRequestedRoute(HttpMethod.get, uri) != null ? "" : null;
             }
@@ -151,16 +152,16 @@ public class MatcherFilter implements Filter {
 
             // AFTER filters
             matchSet = routeMatcher.findTargetsForRequestedRoute(HttpMethod.after, uri);
-            
+
             for (RouteMatch filterMatch : matchSet) {
                 Object filterTarget = filterMatch.getTarget();
                 if (filterTarget instanceof sparkling.Filter) {
                     Request request = RequestResponseFactory.create(filterMatch, httpRequest);
                     Response response = RequestResponseFactory.create(httpResponse);
-                    
+
                     req.setDelegate(request);
                     res.setDelegate(response);
-                    
+
                     sparkling.Filter filter = (sparkling.Filter) filterTarget;
                     filter.handle(req, res);
 
@@ -168,26 +169,27 @@ public class MatcherFilter implements Filter {
                     if (bodyAfterFilter != null) {
                         bodyContent = bodyAfterFilter;
                     }
-                }   
+                }
             }
             // AFTER filters, END
-            
-        } catch (HaltException hEx) {
+        }
+        catch (HaltException hEx) {
             LOG.debug("halt performed");
             httpResponse.setStatus(hEx.getStatusCode());
             if (hEx.getBody() != null) {
                 bodyContent = hEx.getBody();
-            } else {
+            }
+            else {
                 bodyContent = "";
             }
         }
 
         boolean consumed = bodyContent != null;
-        
+
         if (!consumed && hasOtherHandlers) {
             throw new NotConsumedException();
         }
-        
+
         if (!consumed && !isServletContext) {
             httpResponse.setStatus(HttpServletResponse.SC_NOT_FOUND);
             bodyContent = NOT_FOUND;
@@ -199,13 +201,15 @@ public class MatcherFilter implements Filter {
             if (!httpResponse.isCommitted()) {
                 httpResponse.getOutputStream().write(bodyContent.getBytes("utf-8"));
             }
-        } else if (chain != null) {
+        }
+        else if (chain != null) {
             chain.doFilter(httpRequest, httpResponse);
         }
     }
 
+    @Override
     public void destroy() {
-        // TODO Auto-generated method stub
+        // empty
     }
 
     private static final String NOT_FOUND = "<html><body><h2>404 Not found</h2>The requested route has not been mapped in Sparkling</body></html>";

@@ -41,25 +41,21 @@ import sparkling.utils.SparklingUtils;
  * @author Per Wendel
  */
 public class Request {
-
     private static final org.slf4j.Logger LOG = org.slf4j.LoggerFactory.getLogger(Request.class);
-    
     private static final String USER_AGENT = "user-agent";
-    
+
     private Map<String, String> params;
     private List<String> splat;
     private QueryParamsMap queryMap;
-    
+
     private HttpMethod httpMethod;
     private HttpServletRequest servletRequest;
-
     private Session session = null;
-    
+
     /* Lazy loaded stuff */
     private String body = null;
-    
     private Set<String> headers = null;
-    
+
     //    request.body              # request body sent by the client (see below), DONE
     //    request.scheme            # "http"                                DONE
     //    request.path_info         # "/foo",                               DONE
@@ -82,29 +78,29 @@ public class Request {
     //    request.script_name       # "/example"
     //    request.form_data?        # false
     //    request.referrer          # the referrer of the client or '/'
-    
+
     protected Request() {
        // Used by wrapper
     }
-    
+
     /**
      * Constructor
      */
-    Request(RouteMatch match, HttpServletRequest request) {
+    Request(final RouteMatch match, final HttpServletRequest request) {
         this.httpMethod = match.getHttpMethod();
         this.servletRequest = request;
-        
+
         List<String> requestList = SparklingUtils.convertRouteToList(match.getRequestURI());
         List<String> matchedList = SparklingUtils.convertRouteToList(match.getMatchUri());
-        
+
         params = getParams(requestList, matchedList);
         splat = getSplat(requestList, matchedList);
     }
-    
+
     /**
      * Returns the value of the provided route pattern parameter.
      * Example: parameter 'name' from the following pattern: (get '/hello/:name')
-     * 
+     *
      * @return null if the given param is null or not found 
      */
     public String params(String param) {
@@ -113,19 +109,20 @@ public class Request {
         }
 
         if (param.startsWith(":")) {
-            return params.get(param.toLowerCase()); // NOSONAR
-        } else {
-            return params.get(":" + param.toLowerCase()); // NOSONAR
+            return params.get(param.toLowerCase());
+        }
+        else {
+            return params.get(":" + param.toLowerCase());
         }
     }
-    
+
     /**
      * Returns an arrat containing the splat (wildcard) parameters 
      */
     public String[] splat() {
         return splat.toArray(new String[splat.size()]);
     }
-    
+
     /**
      * Returns request method e.g. GET, POST, PUT, ...
      */
@@ -139,7 +136,7 @@ public class Request {
     public String scheme() {
         return servletRequest.getScheme();
     }
-    
+
     /**
      * Returns the host
      */
@@ -153,14 +150,13 @@ public class Request {
     public String userAgent() {
         return servletRequest.getHeader(USER_AGENT);
     }
-    
+
     /**
      * Returns the server port
      */
     public int port() {
         return servletRequest.getServerPort();
     }
-
 
     /**
      * Returns the path info
@@ -169,14 +165,14 @@ public class Request {
     public String pathInfo() {
         return servletRequest.getPathInfo();
     }
-    
+
     /**
      * Returns the URL string
      */
     public String url() {
-    	return servletRequest.getRequestURL().toString();
+        return servletRequest.getRequestURL().toString();
     }
-    
+
     /**
      * Returns the content type of the body
      */
@@ -190,7 +186,7 @@ public class Request {
     public String ip() {
         return servletRequest.getRemoteAddr();
     }
-    
+
     /**
      * Returns the request body sent by the client
      */
@@ -198,13 +194,14 @@ public class Request {
         if (body == null) {
             try {
                 body = IOUtils.toString(servletRequest.getInputStream());
-            } catch (Exception e) {
+            }
+            catch (Exception e) {
                 LOG.warn("Exception when reading body", e);
             }
         }
         return body;
     }
-    
+
     /**
      * Returns the length of request.body
      */
@@ -260,19 +257,18 @@ public class Request {
      * @param attribute The attribute
      * @param value The attribute value
      */
-    public void attribute(String attribute, Object value) {
+    public void attribute(final String attribute, final Object value) {
         servletRequest.setAttribute(attribute, value);
     }
-    
+
     /**
      * Gets the value of the provided attribute
      * @param attribute The attribute value or null if not present
      */
-    public Object attribute(String attribute) {
+    public Object attribute(final String attribute) {
         return servletRequest.getAttribute(attribute);
     }
-    
-    
+
     /**
      * Returns all attributes
      */
@@ -284,21 +280,20 @@ public class Request {
         }
         return attrList;
     }
-    
+
     /**
      * Gets the raw HttpServletRequest object handed in by Jetty
      */
     public HttpServletRequest raw() {
         return servletRequest;
     }
-    
+
     public QueryParamsMap queryMap() {
         initQueryMap();
-        
         return queryMap;
     }
-    
-    public QueryParamsMap queryMap(String key) {
+
+    public QueryParamsMap queryMap(final String key) {
         return queryMap().get(key);
     }
 
@@ -307,11 +302,11 @@ public class Request {
             queryMap = new QueryParamsMap(raw());
         }
     }
-    
+
     /**
      * Returns the current session associated with this request, 
      * or if the request does not have a session, creates one.
-     *  
+     *
      * @return the session associated with this request
      */
     public Session session() {
@@ -324,13 +319,13 @@ public class Request {
     /**
      * Returns the current session associated with this request, or if there is 
      * no current session and <code>create</code> is true, returns  a new session.
-     * 
+     *
      * @param create <code>true</code> to create a new session for this request if necessary;
      *              <code>false</code> to return null if there's no current session 
      * @return the session associated with this request or <code>null</code> if
      *          <code>create</code> is <code>false</code> and the request has no valid session
      */
-    public Session session(boolean create) {
+    public Session session(final boolean create) {
         if (session == null) {
             HttpSession httpSession = servletRequest.getSession(create);
             if (httpSession != null) {
@@ -339,7 +334,7 @@ public class Request {
         }
         return session;
     }
-    
+
     /**
      * @return request cookies (or empty Map if cookies dosn't present)
      */
@@ -353,13 +348,13 @@ public class Request {
         }
         return result;
     }
-    
+
     /**
      * Gets cookie by name.
      * @param name name of the cookie
      * @return cookie value or null if the cookie was not found
      */
-    public String cookie(String name) {
+    public String cookie(final String name) {
         Cookie[] cookies = servletRequest.getCookies();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
@@ -370,12 +365,12 @@ public class Request {
         }
         return null;
     }
-    
-    private static Map<String, String> getParams(List<String> request, List<String> matched) {
+
+    private static Map<String, String> getParams(final List<String> request, final List<String> matched) {
         LOG.debug("get params");
 
         Map<String, String> params = new HashMap<String, String>();
-        
+
         for (int i = 0; (i < request.size()) && (i < matched.size()); i++) {
             String matchedPart = matched.get(i);
             if (SparklingUtils.isParam(matchedPart)) {
@@ -388,22 +383,19 @@ public class Request {
         }
         return Collections.unmodifiableMap(params);
     }
-    
-    private static List<String> getSplat(List<String> request, List<String> matched) {
+
+    private static List<String> getSplat(final List<String> request, final List<String> matched) {
         LOG.debug("get splat");
 
         int nbrOfRequestParts = request.size();
         int nbrOfMatchedParts = matched.size();
-        
         boolean sameLength = (nbrOfRequestParts == nbrOfMatchedParts);
-        
         List<String> splat = new ArrayList<String>();
-        
+
         for (int i = 0; (i < nbrOfRequestParts) && (i < nbrOfMatchedParts); i++) {
             String matchedPart = matched.get(i);
-            
+
             if (SparklingUtils.isSplat(matchedPart)) {
-                
                 StringBuilder splatParam = new StringBuilder(request.get(i));
                 if (!sameLength && (i == (nbrOfMatchedParts -1))) {
                     for (int j = i + 1; j < nbrOfRequestParts; j++) {
@@ -416,5 +408,4 @@ public class Request {
         }
         return Collections.unmodifiableList(splat);
     }
-    
 }

@@ -24,14 +24,13 @@ import org.eclipse.jetty.util.log.Logger;
  * @author Per Wendel
  */
 public class JettyLogger implements Logger {
-
     private org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(getClass());
-    
-    public void debug(String msg, Throwable th) {
+
+    public void debug(final String msg, final Throwable th) {
         logger.debug(msg, th);
     }
 
-    public Logger getLogger(String arg) {
+    public Logger getLogger(final String arg) {
         return this;
     }
 
@@ -41,18 +40,18 @@ public class JettyLogger implements Logger {
     }
 
     @Override
-    public void warn(String msg, Throwable th) {
+    public void warn(final String msg, final Throwable th) {
         logger.warn(msg, th);
     }
 
     @Override
-    public void debug(Throwable thrown) {
+    public void debug(final Throwable thrown) {
         logger.debug("", thrown);
 
     }
 
     @Override
-    public void debug(String msg, Object... args) {
+    public void debug(final String msg, final Object... args) {
         StringBuffer log = new StringBuffer(msg);
         for (Object arg : args) {
             log.append(", ");
@@ -67,17 +66,17 @@ public class JettyLogger implements Logger {
     }
 
     @Override
-    public void ignore(Throwable ignored) {
+    public void ignore(final Throwable ignored) {
         //
     }
 
     @Override
-    public void info(Throwable thrown) {
+    public void info(final Throwable thrown) {
         logger.info("", thrown);
     }
 
     @Override
-    public void info(String msg, Object... args) {
+    public void info(final String msg, final Object... args) {
         StringBuffer log = new StringBuffer(msg);
         for (Object arg : args) {
             log.append(", ");
@@ -87,22 +86,22 @@ public class JettyLogger implements Logger {
     }
 
     @Override
-    public void info(String msg, Throwable thrown) {
+    public void info(final String msg, final Throwable thrown) {
         logger.info(msg, thrown);
     }
 
     @Override
-    public void setDebugEnabled(boolean enabled) {
+    public void setDebugEnabled(final boolean enabled) {
         // 
     }
 
     @Override
-    public void warn(Throwable thrown) {
+    public void warn(final Throwable thrown) {
         logger.warn("", thrown);
     }
 
     @Override
-    public void warn(String msg, Object... args) {
+    public void warn(final String msg, final Object... args) {
         StringBuffer log = new StringBuffer(msg);
         for (Object arg : args) {
             log.append(", ");
@@ -110,5 +109,4 @@ public class JettyLogger implements Logger {
         }
         logger.warn(log.toString());
     }
-
 }
