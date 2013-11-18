@@ -14,3 +14,6 @@ http://search.maven.org/#search|ga|1|g%3A%22com.github.heuermh.sparkling%22
   <version>1.1</version>
 </dependency>
 ```
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/heuermh/sparkling/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
