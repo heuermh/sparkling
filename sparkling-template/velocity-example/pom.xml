@@ -24,7 +24,7 @@ limitations under the License.
     <version>1.2-SNAPSHOT</version>
   </parent>
   <artifactId>sparkling-template-velocity-example</artifactId>
-  <packaging>jar</packaging>
+  <packaging>bundle</packaging>
 
   <name>sparkling-template-velocity-example</name>
   <description>Example for sparkling-template-velocity.</description>

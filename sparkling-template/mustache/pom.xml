@@ -24,7 +24,7 @@ limitations under the License.
     <version>1.2-SNAPSHOT</version>
   </parent>
   <artifactId>sparkling-template-mustache</artifactId>
-  <packaging>jar</packaging>
+  <packaging>bundle</packaging>
 
   <name>sparkling-template-mustache</name>
   <description>Template routes based on Mustache.java.</description>

@@ -24,7 +24,7 @@ limitations under the License.
     <version>1.2-SNAPSHOT</version>
   </parent>
   <artifactId>sparkling-template</artifactId>
-  <packaging>jar</packaging>
+  <packaging>bundle</packaging>
 
   <name>sparkling-template</name>
   <description>Template routes for Sparkling web framework.</description>

@@ -24,7 +24,7 @@ limitations under the License.
     <version>1.2-SNAPSHOT</version>
   </parent>
   <artifactId>sparkling</artifactId>
-  <packaging>jar</packaging>
+  <packaging>bundle</packaging>
   <name>sparkling</name>
   <description>Sparkling web framework, a fork of Spark web framework.</description>
 
