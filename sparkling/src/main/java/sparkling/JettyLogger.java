@@ -61,6 +61,11 @@ public class JettyLogger implements Logger {
     }
 
     @Override
+    public void debug(String msg, long value) {
+        logger.debug(msg, value);
+    }
+
+    @Override
     public String getName() {
         return "Sparkling Jetty Logger";
     }

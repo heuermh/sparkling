@@ -23,16 +23,16 @@ public class ServletTest {
     static SparklingTestUtil testUtil;
 
     @AfterClass
-    public static void tearDown() {
+    public static void tearDown() throws Exception {
         TAccess.clearRoutes();
         TAccess.stop();
+        server.stop();
     }
 
     @BeforeClass
-    public static void setup() {
+    public static void setup() throws Exception {
         testUtil = new SparklingTestUtil(PORT);
 
-        final Server server = new Server();
         ServerConnector connector = new ServerConnector(server);
 
         // Set some timeout options to make debugging easier.
@@ -47,25 +47,7 @@ public class ServletTest {
         bb.setWar("src/test/webapp");
 
         server.setHandler(bb);
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    System.out.println(">>> STARTING EMBEDDED JETTY SERVER for jUnit testing of SparklingFilter");
-                    server.start();
-                    System.in.read();
-                    System.out.println(">>> STOPPING EMBEDDED JETTY SERVER");
-                    server.stop();
-                    server.join();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    System.exit(100);
-                }
-            }
-        }).start();
-
-        sleep(1000);
+        server.start();
     }
 
     @Test

@@ -24,6 +24,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpUpgradeHandler;
 import javax.servlet.http.Part;
 
 import org.junit.Test;
@@ -62,9 +63,20 @@ public class RequestTest {
             this.params = params;
         }
 
+
+        @Override
+        public String changeSessionId() {
+            return null;
+        }
+
         @Override
         public String getAuthType() {
             return null;
+        }
+
+        @Override
+        public long getContentLengthLong() {
+            return 0;
         }
 
         @Override
@@ -332,68 +344,69 @@ public class RequestTest {
         	// do nothing
         }
 
-		@Override
-		public ServletContext getServletContext() {
-			return null;
-		}
+        @Override
+        public <T extends HttpUpgradeHandler> T upgrade(Class<T> handlerClass) throws IOException, ServletException {
+            return null;
+        }
 
-		@Override
-		public AsyncContext startAsync() throws IllegalStateException {
-			return null;
-		}
+        @Override
+        public ServletContext getServletContext() {
+            return null;
+        }
 
-		@Override
-		public AsyncContext startAsync(ServletRequest servletRequest,
-				ServletResponse servletResponse) throws IllegalStateException {
-			return null;
-		}
+        @Override
+        public AsyncContext startAsync() throws IllegalStateException {
+            return null;
+        }
 
-		@Override
-		public boolean isAsyncStarted() {
-			return false;
-		}
+        @Override
+        public AsyncContext startAsync(ServletRequest servletRequest, ServletResponse servletResponse) throws IllegalStateException {
+            return null;
+        }
 
-		@Override
-		public boolean isAsyncSupported() {
-			return false;
-		}
+        @Override
+        public boolean isAsyncStarted() {
+            return false;
+        }
 
-		@Override
-		public AsyncContext getAsyncContext() {
-			return null;
-		}
+        @Override
+        public boolean isAsyncSupported() {
+            return false;
+        }
 
-		@Override
-		public DispatcherType getDispatcherType() {
-			return null;
-		}
+        @Override
+        public AsyncContext getAsyncContext() {
+            return null;
+        }
 
-		@Override
-		public boolean authenticate(HttpServletResponse response)
-				throws IOException, ServletException {
-			return false;
-		}
+        @Override
+        public DispatcherType getDispatcherType() {
+            return null;
+        }
 
-		@Override
-		public void login(String username, String password)
-				throws ServletException {
-			// do nothing
-		}
+        @Override
+        public boolean authenticate(HttpServletResponse response) throws IOException, ServletException {
+            return false;
+        }
 
-		@Override
-		public void logout() throws ServletException {
-			// do nothing
-		}
+        @Override
+        public void login(String username, String password) throws ServletException {
+            // do nothing
+        }
 
-		@Override
-		public Collection<Part> getParts() throws IOException, ServletException {
-			return null;
-		}
+        @Override
+        public void logout() throws ServletException {
+            // do nothing
+        }
 
-		@Override
-		public Part getPart(String name) throws IOException, ServletException {
-			return null;
-		}
-        
+        @Override
+        public Collection<Part> getParts() throws IOException, ServletException {
+            return null;
+        }
+
+        @Override
+        public Part getPart(String name) throws IOException, ServletException {
+            return null;
+        }
     }
 }
