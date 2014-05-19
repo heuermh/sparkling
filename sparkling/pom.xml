@@ -21,9 +21,10 @@ limitations under the License.
   <parent>
     <groupId>com.github.heuermh.sparkling</groupId>
     <artifactId>sparkling-multimodule</artifactId>
-    <version>1.1.2</version>
+    <version>1.2-SNAPSHOT</version>
   </parent>
   <artifactId>sparkling</artifactId>
+  <version> 1.2-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <name>sparkling</name>
   <description>Sparkling web framework, a fork of Spark web framework.</description>
