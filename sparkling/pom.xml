@@ -30,7 +30,7 @@ limitations under the License.
   <description>Sparkling web framework, a fork of Spark web framework.</description>
 
   <properties>
-    <jetty.version>9.1.5.v20140505</jetty.version>
+    <jetty.version>9.1.6.v20160112</jetty.version>
   </properties>
 
   <dependencyManagement>
@@ -38,12 +38,12 @@ limitations under the License.
       <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-api</artifactId>
-        <version>1.7.7</version>
+        <version>1.7.36</version>
       </dependency>
       <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-simple</artifactId>
-        <version>1.7.7</version>
+        <version>1.7.36</version>
       </dependency>
       <dependency>
         <groupId>org.eclipse.jetty</groupId>
@@ -58,7 +58,7 @@ limitations under the License.
       <dependency>
         <groupId>org.apache.httpcomponents</groupId>
         <artifactId>httpclient</artifactId>
-        <version>4.3.3</version>
+        <version>4.5.14</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
