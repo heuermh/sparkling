@@ -14,36 +14,42 @@ Template routes for Sparkling web framework:
 ```
 
 
+#### Hacking sparking-template
 
 To build
 
-    $ mvn install
-
+```bash
+$ mvn install
+```
 
 To build velocity example
 
-    $ cd velocity-example
-    $ mvn assembly:assembly
-
+```bash
+$ cd velocity-example
+$ mvn assembly:assembly
+```
 
 To run velocity example
 
-    $ java -jar target/sparkling-template-velocity-example-1.1-SNAPSHOT-jar-with-dependencies.jar 
-    == Sparkling has ignited ...
-    >> Listening on 0.0.0.0:4567
+```bash
+$ java -jar target/sparkling-template-velocity-example-1.1-SNAPSHOT-jar-with-dependencies.jar
+== Sparkling has ignited ...
+>> Listening on 0.0.0.0:4567
+```
 
 Then open
 
-    http://localhost:4567/hello/foo
+http://localhost:4567/hello/foo
 
 in a browser.
 
 
+#### Extending sparkling-template
 
 To add a new Template engine
 
  - Create a new module
  - Add dependency to sparkling-template
  - Add dependency to new template engine
- - Extend https://github.com/heuermh/sparkling/blob/master/sparkling-template/api/src/main/java/sparkling/template/TemplateRoute.java
+ - Extend [TemplateRoute.java](https://github.com/heuermh/sparkling/blob/master/sparkling-template/api/src/main/java/sparkling/template/TemplateRoute.java)
  - (optional) Create a new example module

@@ -14,4 +14,3 @@ http://search.maven.org/#search|ga|1|g%3A%22com.github.heuermh.sparkling%22
   <version>1.1.2</version>
 </dependency>
 ```
-
