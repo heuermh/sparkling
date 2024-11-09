@@ -30,7 +30,7 @@ limitations under the License.
   <description>Sparkling web framework, a fork of Spark web framework.</description>
 
   <properties>
-    <jetty.version>9.1.6.v20160112</jetty.version>
+    <jetty.version>9.4.55.v20240627</jetty.version>
   </properties>
 
   <dependencyManagement>
