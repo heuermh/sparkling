@@ -14,7 +14,7 @@ Template routes for Sparkling web framework:
 ```
 
 
-#### Hacking sparking-template
+### Hacking sparking-template
 
 To build
 
@@ -44,7 +44,8 @@ http://localhost:4567/hello/foo
 in a browser.
 
 
-#### Extending sparkling-template
+
+### Extending sparkling-template
 
 To add a new Template engine
 
