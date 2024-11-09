@@ -11,11 +11,14 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import java.security.SecureRandom;
+
 import static sparkling.Sparkling.*;
 
 public class GenericIntegrationTest {
 
     static SparklingTestUtil testUtil;
+    static File tmpExternalDirectory;
     static File tmpExternalFile;
 
     @AfterClass
@@ -25,13 +28,31 @@ public class GenericIntegrationTest {
         if (tmpExternalFile != null) {
             tmpExternalFile.delete();
         }
+        if (tmpExternalDirectory != null) {
+            tmpExternalDirectory.delete();
+        }
+    }
+
+    // see TempFileHelper.java
+    private static final SecureRandom random = new SecureRandom();
+    private static String generateTempDirectoryName(final String prefix) {
+        long n = random.nextLong();
+        return prefix + Long.toUnsignedString(n);
     }
 
     @BeforeClass
     public static void setup() throws IOException {
         testUtil = new SparklingTestUtil(4567);
 
-        tmpExternalFile = new File(System.getProperty("java.io.tmpdir"), "externalFile.html");
+        //
+        // does not work on osx
+        // see https://github.com/jetty/jetty.project/security/advisories/GHSA-g3wg-6mcf-8jj6
+        //
+        //tmpExternalDirectory = Files.createTempDirectory("sparklingGenericIntegrationTest").toFile();
+        tmpExternalDirectory = new File(generateTempDirectoryName("work"));
+        tmpExternalDirectory.mkdir();
+
+        tmpExternalFile = new File(tmpExternalDirectory, "externalFile.html");
 
         FileWriter writer = new FileWriter(tmpExternalFile);
         writer.write("Content of external file");
@@ -39,7 +60,7 @@ public class GenericIntegrationTest {
         writer.close();
 
         staticFileLocation("/public");
-        externalStaticFileLocation(System.getProperty("java.io.tmpdir"));
+        externalStaticFileLocation(tmpExternalDirectory.getAbsolutePath());
 
         before(new Filter("/protected/*") {
 
@@ -210,13 +231,13 @@ public class GenericIntegrationTest {
     @Test
     public void testTwoRoutesWithDifferentCaseButSameName() {
         String lowerCasedRoutePart = "param";
-        String uppperCasedRoutePart = "PARAM";
+        String upperCasedRoutePart = "PARAM";
 
         registerEchoRoute(lowerCasedRoutePart);
-        registerEchoRoute(uppperCasedRoutePart);
+        registerEchoRoute(upperCasedRoutePart);
         try {
             assertEchoRoute(lowerCasedRoutePart);
-            assertEchoRoute(uppperCasedRoutePart);
+            assertEchoRoute(upperCasedRoutePart);
         } catch (Throwable e) {
             throw new RuntimeException(e);
         }
