@@ -21,7 +21,7 @@ limitations under the License.
   <parent>
     <groupId>org.dishevelled</groupId>
     <artifactId>dsh-parent</artifactId>
-    <version>47</version>
+    <version>48</version>
   </parent>
   <groupId>com.github.heuermh.sparkling</groupId>
   <artifactId>sparkling-multimodule</artifactId>
