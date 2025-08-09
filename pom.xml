@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-Copyright 2011-2013 Per Wendel, Michael Heuer
+Copyright 2011-2025 Per Wendel, Michael Heuer
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ limitations under the License.
   <parent>
     <groupId>org.dishevelled</groupId>
     <artifactId>dsh-parent</artifactId>
-    <version>48</version>
+    <version>55</version>
   </parent>
   <groupId>com.github.heuermh.sparkling</groupId>
   <artifactId>sparkling-multimodule</artifactId>
@@ -61,59 +61,13 @@ limitations under the License.
     <module>sparkling-template</module>
   </modules>
 
-  <properties>
-    <maven.compile.source>11</maven.compile.source>
-    <maven.compile.target>11</maven.compile.target>
-    <maven.enforcer.maven-version>[3.6.3,)</maven.enforcer.maven-version>
-    <maven.enforcer.jdk-version>[11,)</maven.enforcer.jdk-version>
-  </properties>
   <build>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.apache.felix</groupId>
-          <artifactId>maven-bundle-plugin</artifactId>
-          <version>2.4.0</version>
-          <extensions>true</extensions>
-        </plugin>
-      </plugins>
-    </pluginManagement>
     <plugins>
       <plugin>
         <groupId>org.apache.felix</groupId>
         <artifactId>maven-bundle-plugin</artifactId>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-enforcer-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>enforce-java</id>
-            <goals>
-              <goal>enforce</goal>
-            </goals>
-            <configuration>
-              <rules>
-                <requireMavenVersion>
-                  <version>${maven.enforcer.maven-version}</version>
-                </requireMavenVersion>
-                <requireJavaVersion>
-                  <version>${maven.enforcer.jdk-version}</version>
-                </requireJavaVersion>
-              </rules>    
-            </configuration>
-          </execution>
-        </executions>
+        <extensions>true</extensions>
       </plugin>
     </plugins>
   </build>
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>4.13.2</version>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
 </project>
