@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-Copyright 2011-2025 Per Wendel, Michael Heuer
+Copyright 2011-2026 Per Wendel, Michael Heuer
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ limitations under the License.
   <parent>
     <groupId>org.dishevelled</groupId>
     <artifactId>dsh-parent</artifactId>
-    <version>56</version>
+    <version>60-SNAPSHOT</version>
   </parent>
   <groupId>com.github.heuermh.sparkling</groupId>
   <artifactId>sparkling-multimodule</artifactId>
